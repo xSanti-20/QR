@@ -36,7 +36,7 @@
         .container {
             max-width: 400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -46,16 +46,18 @@
         /* Carrusel de imágenes */
         .carousel-container {
             position: relative;
-            margin-bottom: 30px;
-            border-radius: 15px;
+            margin-bottom: 25px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(148, 124, 76, 0.3);
+            box-shadow: 0 8px 25px rgba(148, 124, 76, 0.3);
+            width: 100%;
+            max-width: 100%;
         }
 
         .carousel {
             position: relative;
             width: 100%;
-            height: 200px;
+            height: 280px;
             overflow: hidden;
         }
 
@@ -74,6 +76,21 @@
 
         .slide.active {
             opacity: 1;
+        }
+
+        /* Estilos para imágenes reales del carrusel */
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0;
+        }
+        
+        /* Estilo específico para el logo (primera imagen) */
+        .slide:first-child img {
+            object-fit: contain;
+            background: #1a1a1a;
         }
 
         .placeholder-image {
@@ -103,16 +120,19 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(148, 124, 76, 0.8);
+            background: rgba(148, 124, 76, 0.9);
             color: var(--white);
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 16px;
             transition: all 0.3s ease;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .carousel-btn:hover {
@@ -270,11 +290,20 @@
         /* Responsivo */
         @media (max-width: 320px) {
             .container {
-                padding: 15px;
+                padding: 10px;
+            }
+            
+            .carousel {
+                height: 220px;
+            }
+            
+            .carousel-container {
+                margin-bottom: 20px;
+                border-radius: 10px;
             }
             
             .main-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .social-link {
@@ -289,13 +318,51 @@
             }
         }
 
-        @media (min-width: 480px) {
+        /* Tablets pequeñas y móviles grandes */
+        @media (min-width: 321px) and (max-width: 480px) {
+            .carousel {
+                height: 250px;
+            }
+            
+            .container {
+                padding: 12px;
+            }
+            
+            .social-link {
+                width: 280px;
+            }
+        }
+
+        /* Tablets y pantallas más grandes */
+        @media (min-width: 481px) {
             .container {
                 max-width: 450px;
             }
             
+            .carousel {
+                height: 320px;
+            }
+            
             .social-link {
                 width: 320px;
+            }
+        }
+
+        /* Pantallas muy pequeñas */
+        @media (max-width: 280px) {
+            .carousel {
+                height: 200px;
+            }
+            
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .dot {
+                width: 10px;
+                height: 10px;
             }
         }
     </style>
@@ -305,22 +372,64 @@
         <!-- Carrusel de imágenes -->
         <div class="carousel-container">
             <div class="carousel">
+                <!-- Logo - Primera imagen -->
                 <div class="slide active">
-                    <div class="placeholder-image">
+                    <img src="static/images/carousel/logo.png" 
+                         alt="Logo M&M Constructora" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="display: none;">
                         <i class="fas fa-building"></i>
-                        <p>Construcción 1</p>
+                        <p>M&M Constructora</p>
                     </div>
                 </div>
+                <!-- Proyecto 1 -->
                 <div class="slide">
-                    <div class="placeholder-image">
+                    <img src="static/images/carousel/proyecto1.jpeg" 
+                         alt="Proyecto de Construcción 1" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="display: none;">
                         <i class="fas fa-home"></i>
+                        <p>Proyecto 1</p>
+                    </div>
+                </div>
+                <!-- Proyecto 2 -->
+                <div class="slide">
+                    <img src="static/images/carousel/proyecto2.jpeg" 
+                         alt="Proyecto de Construcción 2" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="display: none;">
+                        <i class="fas fa-hammer"></i>
                         <p>Proyecto 2</p>
                     </div>
                 </div>
+                <!-- Proyecto 3 -->
                 <div class="slide">
-                    <div class="placeholder-image">
-                        <i class="fas fa-hammer"></i>
-                        <p>Obra 3</p>
+                    <img src="static/images/carousel/proyecto3.jpeg" 
+                         alt="Proyecto de Construcción 3" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="display: none;">
+                        <i class="fas fa-tools"></i>
+                        <p>Proyecto 3</p>
+                    </div>
+                </div>
+                <!-- Proyecto 4 -->
+                <div class="slide">
+                    <img src="static/images/carousel/proyecto4.jpeg" 
+                         alt="Proyecto de Construcción 4" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="display: none;">
+                        <i class="fas fa-city"></i>
+                        <p>Proyecto 4</p>
+                    </div>
+                </div>
+                <!-- Proyecto 5 -->
+                <div class="slide">
+                    <img src="static/images/carousel/proyecto5.jpeg" 
+                         alt="Proyecto de Construcción 5" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-image" style="display: none;">
+                        <i class="fas fa-warehouse"></i>
+                        <p>Proyecto 5</p>
                     </div>
                 </div>
             </div>
@@ -334,6 +443,9 @@
                 <span class="dot active" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
                 <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
             </div>
         </div>
 
