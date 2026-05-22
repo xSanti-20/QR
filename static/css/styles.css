@@ -37,46 +37,102 @@ body {
 /* Navegación */
 .navbar {
     background: var(--secondary-color);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 4px solid var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 100px;
+    gap: 100px;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    min-width: fit-content;
+}
+
+.logo-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), #ff69b4);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.logo-icon:hover {
+    transform: scale(1.08);
+}
+
+.logo a {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo a:hover {
     color: var(--primary-color);
-    letter-spacing: 2px;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: 60px;
+    flex: 1;
+    margin-left: auto;
+    margin-right: 50px;
 }
 
 .nav-menu a {
     color: var(--text-dark);
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
     position: relative;
+    padding-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
 }
 
 .nav-menu a:hover {
     color: var(--primary-color);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
 }
 
 .nav-menu a::after {
