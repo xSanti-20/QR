@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Proyecto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/project-detail-new.css">
+</head>
+
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="../index.html">CONSTRUCTORA</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="about.html">Sobre Nosotros</a></li>
+                <li><a href="services.html">Servicios</a></li>
+                <li><a href="projects.html">Proyectos</a></li>
+                <li><a href="testimonials.html">Testimonios</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar proyectos...">
+                <button id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">Inicio</a> <span>/</span>
+            <a href="projects.html">Proyectos</a> <span>/</span>
+            <span id="breadcrumbProject">Proyecto</span>
+        </div>
+    </div>
+
+    <!-- Contenido Principal - Nuevo Layout -->
+    <section class="project-detail-new">
+        <div class="container-full">
+            <div class="project-grid-two-col">
+                <!-- Columna Izquierda - Contenido Scrolleable -->
+                <div class="project-left-column">
+                    <!-- Info de Cabecera -->
+                    <div class="project-header-info">
+                        <div class="badges">
+                            <span class="badge badge-primary">Entrega Inmediata</span>
+                            <span class="badge badge-secondary" id="categoryBadge">Residencial</span>
+                        </div>
+                        <h1 id="projectTitle">Proyecto Premium</h1>
+                        <p class="project-location" id="projectLocation">Ubicación, Ciudad - País</p>
+                        
+                        <div class="price-section-inline">
+                            <div class="price-item-inline">
+                                <span>Desde</span>
+                                <p id="priceFrom">$350.000.000</p>
+                            </div>
+                            <div class="price-divider-inline"></div>
+                            <div class="price-item-inline">
+                                <span>Hasta</span>
+                                <p id="priceTo">$1.800.000.000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de Tabs (Anclas) -->
+                    <div class="tabs-navigation-anchors">
+                        <a href="#descripcion-section" class="tab-anchor-link active" data-section="descripcion">
+                            <i class="fas fa-info-circle"></i> Descripción
+                        </a>
+                        <a href="#planos-section" class="tab-anchor-link" data-section="planos">
+                            <i class="fas fa-cube"></i> Planos
+                        </a>
+                        <a href="#amenidades-section" class="tab-anchor-link" data-section="amenidades">
+                            <i class="fas fa-dumbbell"></i> Amenidades
+                        </a>
+                        <a href="#especificaciones-section" class="tab-anchor-link" data-section="especificaciones">
+                            <i class="fas fa-list"></i> Especificaciones
+                        </a>
+                        <a href="#ubicacion-section" class="tab-anchor-link" data-section="ubicacion">
+                            <i class="fas fa-map-marker-alt"></i> Ubicación
+                        </a>
+                    </div>
+
+                    <!-- Contenido Scrolleable -->
+                    <!-- Sección: Descripción -->
+                    <section id="descripcion-section" class="content-section">
+                        <h2>Descripción del Proyecto</h2>
+                        <p id="projectFullDescription">Descripción completa del proyecto que se cargará dinámicamente.</p>
+                        <h3>Características Principales</h3>
+                        <ul id="projectFeatures" class="features-list">
+                            <li><i class="fas fa-check"></i> Característica 1</li>
+                            <li><i class="fas fa-check"></i> Característica 2</li>
+                        </ul>
+                    </section>
+
+                    <!-- Sección: Planos -->
+                    <section id="planos-section" class="content-section">
+                        <h2>Planos Arquitectónicos</h2>
+                        <div class="planos-container">
+                            <div class="plano-item">
+                                <img src="https://via.placeholder.com/400x300/e91e63/ffffff?text=Plano+Piso+1" alt="Plano Piso 1">
+                                <p>Plano Piso 1</p>
+                            </div>
+                            <div class="plano-item">
+                                <img src="https://via.placeholder.com/400x300/e91e63/ffffff?text=Plano+Piso+2" alt="Plano Piso 2">
+                                <p>Plano Piso 2</p>
+                            </div>
+                            <div class="plano-item">
+                                <img src="https://via.placeholder.com/400x300/e91e63/ffffff?text=Plano+Aérea" alt="Plano Aéreo">
+                                <p>Vista Aérea</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sección: Amenidades -->
+                    <section id="amenidades-section" class="content-section">
+                        <h2>Amenidades</h2>
+                        <div class="amenities-grid">
+                            <div class="amenity-card">
+                                <i class="fas fa-swimming-pool"></i>
+                                <h4>Piscina</h4>
+                                <p>Piscina de espejo infinito climatizada</p>
+                            </div>
+                            <div class="amenity-card">
+                                <i class="fas fa-dumbbell"></i>
+                                <h4>Gimnasio</h4>
+                                <p>Equipamiento completo y moderno</p>
+                            </div>
+                            <div class="amenity-card">
+                                <i class="fas fa-spa"></i>
+                                <h4>Sauna</h4>
+                                <p>Zona de relajación y bienestar</p>
+                            </div>
+                            <div class="amenity-card">
+                                <i class="fas fa-tree"></i>
+                                <h4>Áreas Verdes</h4>
+                                <p>Jardines diseñados profesionalmente</p>
+                            </div>
+                            <div class="amenity-card">
+                                <i class="fas fa-users"></i>
+                                <h4>Zonas Comunes</h4>
+                                <p>Áreas de esparcimiento y encuentro</p>
+                            </div>
+                            <div class="amenity-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Seguridad 24/7</h4>
+                                <p>Vigilancia constante y sistemas modernos</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sección: Especificaciones -->
+                    <section id="especificaciones-section" class="content-section">
+                        <h2>Especificaciones Técnicas</h2>
+                        <div class="specs-grid">
+                            <div class="spec-card">
+                                <div class="spec-icon">
+                                    <i class="fas fa-ruler-combined"></i>
+                                </div>
+                                <h4>Área Disponible</h4>
+                                <p id="specArea">60 a 250 m²</p>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <h4>Año de Entrega</h4>
+                                <p id="specYear">2025</p>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h4>Cantidad de Pisos</h4>
+                                <p id="specFloors">15</p>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-icon">
+                                    <i class="fas fa-bed"></i>
+                                </div>
+                                <h4>Habitaciones</h4>
+                                <p id="specBedrooms">1 a 4</p>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-icon">
+                                    <i class="fas fa-bath"></i>
+                                </div>
+                                <h4>Baños</h4>
+                                <p id="specBathrooms">1 a 3</p>
+                            </div>
+                            <div class="spec-card">
+                                <div class="spec-icon">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h4>Parqueadero</h4>
+                                <p>Incluido Subterráneo</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sección: Ubicación -->
+                    <section id="ubicacion-section" class="content-section">
+                        <h2>Ubicación del Proyecto</h2>
+                        <p id="projectLocationDetail">Ubicación completa que se cargará dinámicamente.</p>
+                        <div class="map-container" style="margin-top: 30px; border-radius: 8px; overflow: hidden;">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521671411262!2d-75.56533!3d6.212107999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428dfb1111111%3A0x1111111111111111!2sEl%20Poblado%2C%20Medell%C3%ADn!5e0!3m2!1ses!2sco!4v1234567890"
+                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Columna Derecha - Sticky Sidebar -->
+                <aside class="project-right-sidebar">
+                    <!-- Imagen Principal -->
+                    <div class="main-image-container-sidebar">
+                        <img id="mainImage" src="https://via.placeholder.com/700x500/e91e63/ffffff?text=Proyecto" alt="Imagen del Proyecto" class="main-image">
+                        <div class="image-overlay">
+                            <button class="overlay-btn" id="videoBtn">
+                                <i class="fas fa-play"></i> Ver Video
+                            </button>
+                            <button class="overlay-btn" id="tourBtn">
+                                <i class="fas fa-vr-cardboard"></i> Tour Virtual
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Galería de Imágenes -->
+                    <div class="gallery-sidebar">
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/150x120/e91e63/ffffff?text=Img1" alt="Galería 1">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/150x120/e91e63/ffffff?text=Img2" alt="Galería 2">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/150x120/e91e63/ffffff?text=Img3" alt="Galería 3">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/150x120/e91e63/ffffff?text=Img4" alt="Galería 4">
+                        </div>
+                    </div>
+
+                    <!-- Formulario de Contacto -->
+                    <div class="contact-form-box">
+                        <h3>¿Interesado?</h3>
+                        <button class="btn btn-primary btn-full" onclick="window.location.href='contact.html'">
+                            <i class="fas fa-envelope"></i> Solicitar Información
+                        </button>
+                    </div>
+
+                    <!-- Asesorores/Empleados -->
+                    <div class="advisors-box">
+                        <h3>Contáctanos</h3>
+                        <div class="advisor-item">
+                            <img src="https://via.placeholder.com/80x80/e91e63/ffffff?text=VB" alt="Valentina Barreto" class="advisor-avatar">
+                            <div class="advisor-info">
+                                <h4>Valentina Barreto</h4>
+                                <a href="https://wa.me/573015892768" target="_blank" class="whatsapp-link">
+                                    <i class="fab fa-whatsapp"></i> +57 301 589 2768
+                                </a>
+                            </div>
+                        </div>
+                        <div class="advisor-item">
+                            <img src="https://via.placeholder.com/80x80/e91e63/ffffff?text=NM" alt="Natalia Mejia" class="advisor-avatar">
+                            <div class="advisor-info">
+                                <h4>Natalia Mejia</h4>
+                                <a href="https://wa.me/573145678901" target="_blank" class="whatsapp-link">
+                                    <i class="fab fa-whatsapp"></i> +57 314 567 8901
+                                </a>
+                            </div>
+                        </div>
+                        <div class="advisor-item">
+                            <img src="https://via.placeholder.com/80x80/e91e63/ffffff?text=HC" alt="Hernan Cifuentes" class="advisor-avatar">
+                            <div class="advisor-info">
+                                <h4>Hernan Cifuentes</h4>
+                                <a href="https://wa.me/573216549876" target="_blank" class="whatsapp-link">
+                                    <i class="fab fa-whatsapp"></i> +57 321 654 9876
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos Relacionados -->
+    <section class="related-projects">
+        <div class="container">
+            <h2>Otros Proyectos que Podrían Interesarte</h2>
+            <div class="projects-grid">
+                <a href="project-detail-new.html?project=1" class="project-card small">
+                    <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=Proyecto" alt="Proyecto Relacionado">
+                    <h4>Proyecto 1</h4>
+                </a>
+                <a href="project-detail-new.html?project=2" class="project-card small">
+                    <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=Proyecto" alt="Proyecto Relacionado">
+                    <h4>Proyecto 2</h4>
+                </a>
+                <a href="project-detail-new.html?project=3" class="project-card small">
+                    <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=Proyecto" alt="Proyecto Relacionado">
+                    <h4>Proyecto 3</h4>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Listo para tu siguiente proyecto?</h2>
+            <p>Contáctanos hoy y descubre cómo podemos hacer realidad tu visión.</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Solicitar Presupuesto</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sobre Nosotros</h3>
+                    <p>Somos una constructora dedicada a crear espacios de calidad con diseño innovador y acabados premium.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="projects.html">Proyectos</a></li>
+                        <li><a href="services.html">Servicios</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-phone"></i> +57 1 234 5678</p>
+                    <p><i class="fas fa-envelope"></i> info@constructora.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Medellín, Colombia</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://wa.me/573015892768"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);">
+                © 2025 Constructora Premium. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/project-detail.js"></script>
+    <script>
+        // Smooth scroll para las anclas
+        document.querySelectorAll('.tab-anchor-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Actualizar active link
+                    document.querySelectorAll('.tab-anchor-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active link on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    document.querySelectorAll('.tab-anchor-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + sectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>

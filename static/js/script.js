@@ -24,6 +24,28 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// Search functionality
+const searchBtn = document.querySelector('.search-btn');
+const searchInput = document.querySelector('.search-input');
+
+if (searchBtn && searchInput) {
+    searchBtn.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            // Redirigir a la página de proyectos con búsqueda
+            const currentPath = window.location.pathname;
+            const basePath = currentPath.includes('/pages/') ? './' : './pages/';
+            window.location.href = basePath + 'projects.html?search=' + encodeURIComponent(query);
+        }
+    });
+    
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            searchBtn.click();
+        }
+    });
+}
+
 // Form submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
