@@ -47,12 +47,12 @@ body {
 .nav-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
-    gap: 100px;
+    height: 120px;
+    gap: 40px;
 }
 
 .logo {
@@ -66,17 +66,25 @@ body {
 }
 
 .logo-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--primary-color), #ff69b4);
+    width: 80px;
+    height: 80px;
+    background: transparent;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 2rem;
-    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+    box-shadow: none;
     transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .logo-icon:hover {
@@ -100,9 +108,8 @@ body {
     display: flex;
     list-style: none;
     gap: 60px;
-    flex: 1;
-    margin-left: auto;
-    margin-right: 50px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-menu a {
@@ -133,6 +140,188 @@ body {
 
 .nav-menu a:hover::after {
     width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    margin-left: 20px;
+}
+
+.hamburger i {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.hamburger:hover i {
+    color: var(--primary-color);
+}
+
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 25px;
+        gap: 30px;
+        height: 110px;
+    }
+    
+    .nav-menu {
+        gap: 40px;
+    }
+    
+    .logo a {
+        font-size: 1.2rem;
+    }
+    
+    .logo-icon {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-container {
+        padding: 0 20px;
+        gap: 25px;
+        height: 105px;
+    }
+    
+    .nav-menu {
+        gap: 35px;
+    }
+    
+    .logo a {
+        font-size: 1.1rem;
+    }
+    
+    .logo-icon {
+        width: 65px;
+        height: 65px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 15px;
+        gap: 15px;
+        height: 100px;
+    }
+    
+    .nav-menu {
+        display: none;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .logo a {
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .logo-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-container {
+        padding: 0 12px;
+        gap: 10px;
+        height: 90px;
+    }
+    
+    .logo a {
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
+    }
+    
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .hamburger i {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 10px;
+        gap: 8px;
+        height: 80px;
+    }
+    
+    .navbar {
+        border-bottom-width: 2px;
+    }
+    
+    .logo a {
+        font-size: 0.9rem;
+        letter-spacing: 0.2px;
+    }
+    
+    .logo-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .hamburger i {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav-container {
+        padding: 0 8px;
+        gap: 6px;
+        height: 75px;
+    }
+    
+    .logo a {
+        font-size: 0.85rem;
+        letter-spacing: 0.1px;
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .hamburger i {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .nav-container {
+        padding: 0 8px;
+        gap: 5px;
+        height: 70px;
+    }
+    
+    .logo-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+    
+    .logo a {
+        font-size: 0.8rem;
+    }
+    
+    .hamburger i {
+        font-size: 1rem;
+    }
 }
 
 .nav-menu a::after {
@@ -1352,58 +1541,6 @@ body {
 
     .cta-section h2 {
         font-size: 1.5rem;
-    }
-}
-
-/* Search Bar */
-.search-container {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 25px;
-    overflow: hidden;
-    min-width: 200px;
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    padding: 10px 15px;
-    font-size: 0.95rem;
-    background: transparent;
-    outline: none;
-    color: var(--text-dark);
-}
-
-.search-input::placeholder {
-    color: #999;
-}
-
-.search-btn {
-    background: var(--primary-color);
-    border: none;
-    padding: 10px 15px;
-    color: white;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.search-btn:hover {
-    background: #c2185b;
-}
-
-@media (max-width: 768px) {
-    .search-container {
-        min-width: 150px;
-    }
-
-    .search-input {
-        font-size: 0.85rem;
-        padding: 8px 10px;
     }
 }
 

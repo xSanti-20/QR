@@ -1,28 +1,32 @@
 // Menu Toggle
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
+const menuToggle = document.getElementById('hamburger');
+const navMenu = document.querySelector('.nav-menu');
 
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close menu when clicking on a link
-const navLinks = navMenu.querySelectorAll('a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
-});
+
+    // Close menu when clicking on a link
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
 
 // Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.navbar')) {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
-});
+if (menuToggle && navMenu) {
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar')) {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
 
 // Search functionality
 const searchBtn = document.querySelector('.search-btn');
