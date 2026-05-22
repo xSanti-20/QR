@@ -457,7 +457,11 @@
 
 @media (max-width: 768px) {
     .project-detail-new {
-        padding: 40px 15px;
+        padding: 40px 12px;
+    }
+
+    .container-full {
+        padding: 0 8px;
     }
 
     .project-left-column {
@@ -475,12 +479,17 @@
     .tabs-navigation-anchors {
         gap: 8px;
         margin-bottom: 20px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
     }
 
     .tab-anchor-link {
         padding: 10px 12px;
         font-size: 0.85rem;
         gap: 5px;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
     .tab-anchor-link i {
@@ -536,7 +545,11 @@
 
 @media (max-width: 480px) {
     .project-detail-new {
-        padding: 30px 15px;
+        padding: 25px 10px;
+    }
+
+    .container-full {
+        padding: 0 5px;
     }
 
     .project-header-info h1 {
@@ -555,11 +568,15 @@
         gap: 5px;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        padding-bottom: 5px;
     }
 
     .tab-anchor-link {
         padding: 8px 10px;
         font-size: 0.8rem;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
     .content-section h2 {
@@ -621,5 +638,172 @@
 
     .spec-card p {
         font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .project-detail-new {
+        padding: 20px 8px;
+    }
+
+    .container-full {
+        padding: 0 4px;
+    }
+
+    .project-header-info h1 {
+        font-size: 1.4rem;
+    }
+
+    .project-header-info .project-location {
+        font-size: 0.95rem;
+    }
+
+    .price-section-inline {
+        padding: 15px 10px;
+    }
+
+    .price-item-inline p {
+        font-size: 1.2rem;
+    }
+
+    .tabs-navigation-anchors {
+        gap: 4px;
+        padding-bottom: 3px;
+    }
+
+    .tab-anchor-link {
+        padding: 6px 8px;
+        font-size: 0.75rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.3rem;
+    }
+
+    .specs-grid,
+    .amenities-grid,
+    .planos-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .spec-card,
+    .amenity-card {
+        padding: 15px 10px;
+    }
+
+    .advisor-item {
+        padding: 8px 0;
+    }
+
+    .advisor-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .advisor-info h4 {
+        font-size: 0.9rem;
+    }
+
+    .main-image-container-sidebar {
+        height: 180px;
+    }
+
+    .gallery-sidebar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+}
+
+@media (max-width: 360px) {
+    .project-detail-new {
+        padding: 18px 6px;
+    }
+
+    .container-full {
+        padding: 0 3px;
+    }
+
+    .project-header-info h1 {
+        font-size: 1.3rem;
+    }
+
+    .project-header-info .project-location {
+        font-size: 0.9rem;
+    }
+
+    .price-section-inline {
+        padding: 12px 8px;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .price-divider-inline {
+        display: none;
+    }
+
+    .price-item-inline {
+        width: 100%;
+    }
+
+    .price-item-inline p {
+        font-size: 1.1rem;
+    }
+
+    .tabs-navigation-anchors {
+        gap: 3px;
+        padding-bottom: 2px;
+    }
+
+    .tab-anchor-link {
+        padding: 5px 7px;
+        font-size: 0.7rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .specs-grid,
+    .amenities-grid,
+    .planos-container {
+        gap: 8px;
+    }
+
+    .spec-card,
+    .amenity-card {
+        padding: 12px 8px;
+    }
+
+    .spec-icon {
+        font-size: 2rem;
+        height: 50px;
+    }
+
+    .advisor-item {
+        padding: 6px 0;
+    }
+
+    .advisor-avatar {
+        width: 45px;
+        height: 45px;
+    }
+
+    .advisor-info h4 {
+        font-size: 0.85rem;
+    }
+
+    .main-image-container-sidebar {
+        height: 160px;
+    }
+
+    .gallery-sidebar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .contact-form-box,
+    .advisors-box {
+        padding: 15px;
     }
 }
