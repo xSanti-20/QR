@@ -2410,3 +2410,439 @@ body {
 }
 
 /* WhatsApp Button - Removido */
+
+/* Instagram Section */
+.instagram-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+}
+
+.instagram-header {
+    text-align: center;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.instagram-header i {
+    font-size: 3rem;
+    color: #E1306C;
+    background: linear-gradient(45deg, #E1306C, #C13584, #E1306C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.instagram-header h2 {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.instagram-carousel {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 15px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.instagram-post {
+    min-width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+    position: relative;
+    display: block;
+    text-decoration: none;
+}
+
+.instagram-post:hover {
+    transform: scale(1.02);
+}
+
+.post-media {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.post-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.instagram-post:hover .post-media img {
+    transform: scale(1.05);
+}
+
+.post-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.instagram-post:hover .post-overlay {
+    opacity: 1;
+}
+
+.post-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+}
+
+.post-stats i {
+    margin-right: 5px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(233, 30, 99, 0.9);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: var(--primary-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+    left: 20px;
+}
+
+.carousel-next {
+    right: 20px;
+}
+
+.instagram-cta {
+    text-align: center;
+}
+
+.instagram-cta .btn {
+    font-size: 1rem;
+    padding: 15px 40px;
+}
+
+/* Responsive Instagram */
+@media (max-width: 1200px) {
+    .instagram-post {
+        min-width: 280px;
+        height: 380px;
+    }
+
+    .carousel-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .instagram-section {
+        padding: 60px 15px;
+    }
+
+    .instagram-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .instagram-post {
+        min-width: 250px;
+        height: 350px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .carousel-prev {
+        left: 10px;
+    }
+
+    .carousel-next {
+        right: 10px;
+    }
+
+    .post-stats {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .instagram-section {
+        padding: 40px 10px;
+    }
+
+    .instagram-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .instagram-post {
+        min-width: 220px;
+        height: 320px;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.8rem;
+    }
+
+    .carousel-track {
+        gap: 10px;
+    }
+
+    .post-stats {
+        font-size: 0.8rem;
+    }
+}
+
+/* Soluciones Section */
+.soluciones-section {
+    padding: 80px 20px;
+    background: var(--secondary-color);
+}
+
+.soluciones-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.soluciones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.solucion-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 450px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.solucion-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #f0f0f0;
+    z-index: 1;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.95) 0%, rgba(211, 47, 47, 0.95) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    color: white;
+    z-index: 2;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    transition: clip-path 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.solucion-card:hover .card-overlay {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.card-overlay h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.card-overlay p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.btn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.btn-more:hover {
+    background: white;
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.btn-more i {
+    font-size: 0.9rem;
+}
+
+/* Responsive Soluciones */
+@media (max-width: 1200px) {
+    .soluciones-grid {
+        gap: 25px;
+    }
+
+    .solucion-card {
+        height: 400px;
+    }
+
+    .card-overlay {
+        padding: 35px;
+    }
+
+    .card-overlay h3 {
+        font-size: 1.6rem;
+    }
+
+    .card-overlay p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .soluciones-section {
+        padding: 60px 15px;
+    }
+
+    .soluciones-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
+    .soluciones-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .solucion-card {
+        height: 350px;
+    }
+
+    .card-overlay {
+        padding: 25px;
+    }
+
+    .card-overlay h3 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .card-overlay p {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .soluciones-section {
+        padding: 40px 10px;
+    }
+
+    .soluciones-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+    }
+
+    .soluciones-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .solucion-card {
+        height: 300px;
+    }
+
+    .card-overlay {
+        padding: 20px;
+    }
+
+    .card-overlay h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .card-overlay p {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+
+    .btn-more {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+}

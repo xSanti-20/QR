@@ -83,3 +83,54 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Instagram Carousel
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselTrack = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (!carouselTrack || !prevBtn || !nextBtn) return;
+
+    const posts = document.querySelectorAll('.instagram-post');
+    const postWidth = posts[0].offsetWidth + 15; // include gap
+    let currentPosition = 0;
+
+    // Scroll carousel
+    function scrollCarousel(direction) {
+        const maxScroll = postWidth * (posts.length - 1);
+        
+        if (direction === 'next') {
+            currentPosition = Math.min(currentPosition + postWidth, maxScroll);
+        } else {
+            currentPosition = Math.max(currentPosition - postWidth, 0);
+        }
+        
+        carouselTrack.scrollLeft = currentPosition;
+    }
+
+    prevBtn.addEventListener('click', () => scrollCarousel('prev'));
+    nextBtn.addEventListener('click', () => scrollCarousel('next'));
+
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carouselTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    carouselTrack.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        if (touchStartX - touchEndX > 50) {
+            scrollCarousel('next');
+        }
+        if (touchEndX - touchStartX > 50) {
+            scrollCarousel('prev');
+        }
+    }
+});
