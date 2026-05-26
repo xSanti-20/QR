@@ -922,16 +922,16 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(233, 30, 99, 0.8);
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.95) 0%, rgba(211, 47, 47, 0.95) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    transition: clip-path 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .instagram-post:hover .post-overlay {
-    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .post-overlay i {
@@ -1072,7 +1072,7 @@ body {
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
     }
-}
+
 
 @media (max-width: 768px) {
     .nav-menu {
@@ -2407,14 +2407,15 @@ body {
         right: 20px;
         font-size: 26px;
     }
-}
 
 /* WhatsApp Button - Removido */
 
 /* Instagram Section */
 .instagram-section {
-    padding: 80px 20px;
-    background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #c2185b 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
 }
 
 .instagram-header {
@@ -2428,16 +2429,12 @@ body {
 
 .instagram-header i {
     font-size: 3rem;
-    color: #E1306C;
-    background: linear-gradient(45deg, #E1306C, #C13584, #E1306C);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: white;
 }
 
 .instagram-header h2 {
     font-size: 2.2rem;
-    color: var(--text-dark);
+    color: white;
     font-weight: 700;
 }
 
@@ -2456,6 +2453,13 @@ body {
     gap: 15px;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
 }
 
 .instagram-post {
@@ -2508,10 +2512,6 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.instagram-post:hover .post-overlay {
-    opacity: 1;
-}
-
 .post-stats {
     display: flex;
     gap: 15px;
@@ -2528,9 +2528,9 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(233, 30, 99, 0.9);
+    background: white;
     border: none;
-    color: white;
+    color: var(--primary-color);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -2545,6 +2545,7 @@ body {
 
 .carousel-btn:hover {
     background: var(--primary-color);
+    color: white;
     transform: translateY(-50%) scale(1.1);
 }
 
@@ -2565,6 +2566,32 @@ body {
     padding: 15px 40px;
 }
 
+/* Instagram Play Icon */
+.instagram-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--primary-color);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+.instagram-post:hover .instagram-play-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(255, 255, 255, 1);
+}
+
 /* Responsive Instagram */
 @media (max-width: 1200px) {
     .instagram-post {
@@ -2582,6 +2609,7 @@ body {
 @media (max-width: 768px) {
     .instagram-section {
         padding: 60px 15px;
+        background: #f0c5db !important;
     }
 
     .instagram-header h2 {
@@ -2615,6 +2643,7 @@ body {
 @media (max-width: 480px) {
     .instagram-section {
         padding: 40px 10px;
+        background: #f0c5db !important;
     }
 
     .instagram-header h2 {

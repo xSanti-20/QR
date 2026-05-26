@@ -8,7 +8,6 @@ if (menuToggle && navMenu) {
         navMenu.classList.toggle('active');
     });
 
-    // Close menu when clicking on a link
     const navLinks = navMenu.querySelectorAll('a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -36,7 +35,6 @@ if (searchBtn && searchInput) {
     searchBtn.addEventListener('click', () => {
         const query = searchInput.value.trim();
         if (query) {
-            // Redirigir a la página de proyectos con búsqueda
             const currentPath = window.location.pathname;
             const basePath = currentPath.includes('/pages/') ? './' : './pages/';
             window.location.href = basePath + 'projects.html?search=' + encodeURIComponent(query);
@@ -55,14 +53,10 @@ const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        // Get form values
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
         
-        // Simple validation
         if (data.nombre && data.email && data.telefono && data.mensaje) {
-            // Here you would normally send the data to a server
             alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto.');
             contactForm.reset();
         } else {
@@ -93,24 +87,50 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!carouselTrack || !prevBtn || !nextBtn) return;
 
     const posts = document.querySelectorAll('.instagram-post');
-    const postWidth = posts[0].offsetWidth + 15; // include gap
-    let currentPosition = 0;
+    if (posts.length === 0) return;
+
+    // Calculate scroll distance
+    const postStyle = window.getComputedStyle(posts[0]);
+    const postWidth = posts[0].offsetWidth;
+    const gap = parseInt(postStyle.marginRight) || 15;
+    const scrollDistance = postWidth + gap;
 
     // Scroll carousel
     function scrollCarousel(direction) {
-        const maxScroll = postWidth * (posts.length - 1);
+        const scrollAmount = scrollDistance;
         
         if (direction === 'next') {
-            currentPosition = Math.min(currentPosition + postWidth, maxScroll);
+            carouselTrack.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
         } else {
-            currentPosition = Math.max(currentPosition - postWidth, 0);
+            carouselTrack.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
         }
-        
-        carouselTrack.scrollLeft = currentPosition;
     }
 
     prevBtn.addEventListener('click', () => scrollCarousel('prev'));
     nextBtn.addEventListener('click', () => scrollCarousel('next'));
+
+    // Auto-scroll carousel every 3 seconds
+    let autoScrollInterval = setInterval(() => {
+        scrollCarousel('next');
+    }, 3000);
+
+    // Pause auto-scroll on hover
+    carouselTrack.addEventListener('mouseenter', () => {
+        clearInterval(autoScrollInterval);
+    });
+
+    // Resume auto-scroll on mouse leave
+    carouselTrack.addEventListener('mouseleave', () => {
+        autoScrollInterval = setInterval(() => {
+            scrollCarousel('next');
+        }, 3000);
+    });
 
     // Touch support for mobile
     let touchStartX = 0;
@@ -118,11 +138,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     carouselTrack.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
+        clearInterval(autoScrollInterval);
     }, false);
 
     carouselTrack.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
+        autoScrollInterval = setInterval(() => {
+            scrollCarousel('next');
+        }, 3000);
     }, false);
 
     function handleSwipe() {
@@ -133,4 +157,71 @@ document.addEventListener('DOMContentLoaded', function() {
             scrollCarousel('prev');
         }
     }
+
+    // Add play icon overlay to each Instagram post
+    posts.forEach((post) => {
+        const playIcon = document.createElement('div');
+        playIcon.className = 'instagram-play-icon';
+        playIcon.innerHTML = '<i class="fas fa-play"></i>';
+        post.appendChild(playIcon);
+    });
+
+    // Load Instagram reel thumbnails
+    posts.forEach((post, index) => {
+        const instagramUrl = post.getAttribute('href');
+        if (instagramUrl && instagramUrl.includes('instagram.com')) {
+            const cleanUrl = instagramUrl.split('?')[0];
+            const encodedUrl = encodeURIComponent(cleanUrl);
+            
+            // Method 1: Try using cors-anywhere proxy to get og:image
+            fetch('https://cors-anywhere.herokuapp.com/' + cleanUrl, {
+                headers: {
+                    'Accept': 'text/html',
+                }
+            })
+            .then(response => response.text())
+            .then(html => {
+                // Extract og:image from meta tag
+                const ogImageMatch = html.match(/<meta property="og:image" content="([^"]+)"/);
+                if (ogImageMatch && ogImageMatch[1]) {
+                    const img = post.querySelector('img');
+                    if (img) {
+                        img.src = ogImageMatch[1];
+                        img.style.objectFit = 'cover';
+                        console.log('Thumbnail loaded for post', index + 1);
+                    }
+                    return;
+                }
+                throw new Error('No og:image found');
+            })
+            .catch(() => {
+                // Method 2: Try alternative CORS proxy
+                return fetch('https://api.allorigins.win/raw?url=' + encodedUrl)
+                    .then(response => response.text())
+                    .then(html => {
+                        const ogImageMatch = html.match(/<meta property="og:image" content="([^"]+)"/);
+                        if (ogImageMatch && ogImageMatch[1]) {
+                            const img = post.querySelector('img');
+                            if (img) {
+                                img.src = ogImageMatch[1];
+                                img.style.objectFit = 'cover';
+                                console.log('Thumbnail loaded via allorigins for post', index + 1);
+                            }
+                            return;
+                        }
+                        throw new Error('No og:image found');
+                    });
+            })
+            .catch(() => {
+                // Method 3: Try screenshot.rocks API
+                const screenshotUrl = 'https://screenshot.rocks/?url=' + encodedUrl + '&width=300&height=400';
+                const img = post.querySelector('img');
+                if (img) {
+                    img.src = screenshotUrl;
+                    img.style.objectFit = 'cover';
+                    console.log('Using screenshot service for post', index + 1);
+                }
+            });
+        }
+    });
 });
