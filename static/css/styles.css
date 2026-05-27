@@ -2609,7 +2609,7 @@ body {
 @media (max-width: 768px) {
     .instagram-section {
         padding: 60px 15px;
-        background: #f0c5db !important;
+        background: linear-gradient(135deg, var(--primary-color) 0%, #c2185b 100%);
     }
 
     .instagram-header h2 {
@@ -2643,7 +2643,7 @@ body {
 @media (max-width: 480px) {
     .instagram-section {
         padding: 40px 10px;
-        background: #f0c5db !important;
+        background: linear-gradient(135deg, var(--primary-color) 0%, #c2185b 100%);
     }
 
     .instagram-header h2 {
