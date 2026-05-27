@@ -504,7 +504,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
 }
 
 .btn-secondary {
@@ -613,7 +613,7 @@ body {
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
 }
 
 .service-card i {
@@ -655,7 +655,7 @@ body {
 
 .project-card:hover {
     transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
 }
 
 .project-image {
@@ -902,7 +902,7 @@ body {
 
 .instagram-post:hover {
     transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
 }
 
 .instagram-post img {
@@ -983,7 +983,7 @@ body {
 
 .testimonial-card:hover {
     transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
 }
 
 .stars {
@@ -1335,9 +1335,9 @@ body {
 
 .service-card-full:hover {
     border-color: var(--primary-color);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
     transform: translateY(-5px);
-}
+}}
 
 .service-card-full i {
     font-size: 2.5rem;
@@ -2131,7 +2131,7 @@ body {
 
 .plano-item:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
 }
 
 .plano-item img {
@@ -2164,7 +2164,7 @@ body {
 
 .amenity-item:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
 }
 
 .amenity-item i {
