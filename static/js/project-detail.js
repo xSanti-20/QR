@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadProjectData(projectId);
     setupTabs();
     setupGallery();
+    filterRelatedProjects(projectId);
 });
 
 // Cargar datos dinámicos del proyecto
@@ -235,10 +236,27 @@ function setupGallery() {
     });
 }
 
+// Filtrar proyectos recomendados para excluir el proyecto actual
+function filterRelatedProjects(currentProjectId) {
+    const relatedCards = document.querySelectorAll('.related-projects .project-card');
+    
+    relatedCards.forEach(card => {
+        const cardProjectId = card.getAttribute('data-project-id');
+        
+        if (cardProjectId === currentProjectId.toString()) {
+            card.style.display = 'none';
+        } else {
+            card.style.display = 'block';
+        }
+    });
+}
+
 // Botones de Video y Tour Virtual
 document.getElementById('videoBtn')?.addEventListener('click', function() {
-    alert('Video del proyecto abrirá en una ventana emergente');
-    // window.open('url_del_video', '_blank');
+    const videoSection = document.getElementById('video-section');
+    if (videoSection) {
+        videoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 });
 
 document.getElementById('tourBtn')?.addEventListener('click', function() {

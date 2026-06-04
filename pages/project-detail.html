@@ -220,6 +220,21 @@
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </section>
+
+                    <!-- Sección: Video del Proyecto (Malibu) -->
+                    <section id="video-section" class="content-section video-section" style="display: none;">
+                        <h2>Conoce el Proyecto Malibu</h2>
+                        <div class="video-container">
+                            <video width="100%" height="auto" controls style="border-radius: 10px; margin-top: 20px;">
+                                <source src="../static/videos/videomalibu.mp4" type="video/mp4">
+                                Tu navegador no soporta video HTML5.
+                            </video>
+                        </div>
+                        <p style="margin-top: 20px; font-size: 1rem; color: #666; line-height: 1.6;">
+                            Visualiza cómo será el proyecto completo. Este video muestra los detalles arquitectónicos, 
+                            amenidades y características especiales del proyecto Malibu.
+                        </p>
+                    </section>
                 </div>
 
                 <!-- Columna Derecha - Sticky Sidebar -->
@@ -304,22 +319,54 @@
     <!-- Proyectos Relacionados -->
     <section class="related-projects">
         <div class="container">
-            <h2>Otros Proyectos que Podrían Interesarte</h2>
-            <div class="projects-grid">
-                <a href="project-detail-new.html?project=1" class="project-card small">
-                    <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=Proyecto"
-                        alt="Proyecto Relacionado">
-                    <h4>Proyecto 1</h4>
+            <h2>Otros Proyectos Recomendados</h2>
+            <div class="projects-grid projects-extended">
+                <a href="project-detail.html?project=1" class="project-card" data-project-id="1">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/e91e63/ffffff?text=Reservas+del+Poblado"
+                            alt="Reservas del Poblado">
+                    </div>
+                    <div class="project-info">
+                        <h3>Reservas del Poblado</h3>
+                        <p class="project-category">Residencial</p>
+                        <p class="project-description">Proyecto residencial de lujo en El Poblado con apartamentos de 1 a 4 habitaciones, acabados premium y vistas privilegiadas hacia la ciudad.</p>
+                        <div class="project-details">
+                            <span><i class="fas fa-ruler"></i> 60 a 250 m²</span>
+                            <span><i class="fas fa-calendar"></i> 2025</span>
+                        </div>
+                    </div>
                 </a>
-                <a href="project-detail-new.html?project=2" class="project-card small">
-                    <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=Proyecto"
-                        alt="Proyecto Relacionado">
-                    <h4>Proyecto 2</h4>
+
+                <a href="project-detail.html?project=2" class="project-card" data-project-id="2">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/e91e63/ffffff?text=Luxury+Malibu"
+                            alt="Luxury Malibu">
+                    </div>
+                    <div class="project-info">
+                        <h3>Luxury Malibu</h3>
+                        <p class="project-category">Residencial Lujo</p>
+                        <p class="project-description">Casas de lujo en Sabaneta con diseño arquitectónico moderno, amplios espacios, sistemas inteligentes y ubicación privilegiada.</p>
+                        <div class="project-details">
+                            <span><i class="fas fa-ruler"></i> 250 a 500 m²</span>
+                            <span><i class="fas fa-calendar"></i> 2026</span>
+                        </div>
+                    </div>
                 </a>
-                <a href="project-detail-new.html?project=3" class="project-card small">
-                    <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=Proyecto"
-                        alt="Proyecto Relacionado">
-                    <h4>Proyecto 3</h4>
+
+                <a href="project-detail.html?project=3" class="project-card" data-project-id="3">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/e91e63/ffffff?text=Malibu"
+                            alt="Malibu">
+                    </div>
+                    <div class="project-info">
+                        <h3>Malibu</h3>
+                        <p class="project-category">Residencial</p>
+                        <p class="project-description">Proyecto residencial moderno en Envigado con apartamentos de confort, diseño contemporáneo y acceso rápido a comercios.</p>
+                        <div class="project-details">
+                            <span><i class="fas fa-ruler"></i> 80 a 150 m²</span>
+                            <span><i class="fas fa-calendar"></i> 2024</span>
+                        </div>
+                    </div>
                 </a>
             </div>
         </div>
@@ -417,6 +464,19 @@
 
         document.querySelectorAll('.content-section').forEach(section => {
             observer.observe(section);
+        });
+
+        // Mostrar sección de video solo para proyecto Malibu
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectTitle = document.getElementById('projectTitle');
+            const videoSection = document.getElementById('video-section');
+            
+            // Verificar si el título contiene "Malibu" (excluyendo "Luxury Malibu")
+            if (projectTitle && projectTitle.textContent.includes('Malibu') && !projectTitle.textContent.includes('Luxury')) {
+                if (videoSection) {
+                    videoSection.style.display = 'block';
+                }
+            }
         });
     </script>
 </body>
