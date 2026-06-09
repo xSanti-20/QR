@@ -7,10 +7,6 @@
     <title>Contacto - M&M CONSTRUCTORA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../static/css/styles.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
-    <script type="text/javascript">
-        emailjs.init('nsBBp9FUZLzv3-mUV');
-    </script>
 </head>
 
 <body>
@@ -119,7 +115,7 @@
                             <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto..." rows="6"
                                 required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-large" id="submitBtn">Enviar Mensaje</button>
+                        <button type="button" class="btn btn-primary btn-large" id="submitBtn">Enviar Mensaje</button>
                     </form>
                 </div>
             </div>
@@ -181,59 +177,9 @@
         </div>
     </footer>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="../static/js/script.js"></script>
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const formMessage = document.getElementById('formMessage');
-            
-            // Deshabilitar botón durante envío
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
-            
-            // Preparar parámetros
-            const templateParams = {
-                nombre: document.getElementById('nombre').value,
-                email: document.getElementById('email').value,
-                telefono: document.getElementById('telefono').value,
-                asunto: document.getElementById('asunto').value,
-                mensaje: document.getElementById('mensaje').value,
-                to_email: 'puentessantiago2003@gmail.com'
-            };
-            
-            // Enviar con EmailJS
-            emailjs.send('service_0nm1yui', 'template_0r0zkhl', templateParams)
-                .then(function(response) {
-                    // Éxito
-                    formMessage.style.display = 'block';
-                    formMessage.className = 'form-message success';
-                    formMessage.innerHTML = '<i class="fas fa-check-circle"></i> ¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.';
-                    
-                    // Limpiar formulario
-                    document.getElementById('contactForm').reset();
-                    
-                    // Restaurar botón
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Enviar Mensaje';
-                    
-                    // Ocultar mensaje después de 5 segundos
-                    setTimeout(() => {
-                        formMessage.style.display = 'none';
-                    }, 5000);
-                }, function(error) {
-                    // Error
-                    formMessage.style.display = 'block';
-                    formMessage.className = 'form-message error';
-                    formMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error al enviar el mensaje. Por favor intenta nuevamente.';
-                    
-                    // Restaurar botón
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Enviar Mensaje';
-                });
-        });
-    </script>
+    <script src="../static/js/contact-form.js"></script>
 </body>
 
 </html>
