@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - M&M CONSTRUCTORA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="../static/images/carousel/logo.png" alt="M&M Constructora Logo">
+                </div>
+                <a href="../index.html">M&M CONSTRUCTORA</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="about.html">Sobre Nosotros</a></li>
+                <li><a href="services.html">Servicios</a></li>
+                <li><a href="projects.html">Proyectos</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contacto Completo -->
+    <section class="contact contact-page">
+        <div class="container">
+            <h1>Contacto</h1>
+            <div class="contact-hero">
+                <div class="contact-hero-copy">
+                    <span class="contact-eyebrow">Hablemos de tu proyecto</span>
+                    <p class="intro-text intro-text--contact">¿Tienes preguntas o deseas solicitar un presupuesto? Escríbenos y te ayudamos a convertir tu idea en una propuesta clara, rápida y profesional.</p>
+                    <div class="contact-hero-actions">
+                        <a href="https://wa.me/573165589223" target="_blank" class="contact-hero-action">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Escribir por WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-hero-panel">
+                    <div class="contact-hero-card">
+                        <strong>Horario laboral</strong>
+                        <span>atención dentro del horario laboral</span>
+                    </div>
+                    <div class="contact-hero-card">
+                        <strong>Atención</strong>
+                        <span>personalizada y directa</span>
+                    </div>
+                    <div class="contact-hero-card contact-hero-card--accent">
+                        <strong>Espinal</strong>
+                        <span>Tolima y alrededores</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info-section">
+                    <h2>Información de Contacto</h2>
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Dirección</h4>
+                                <p>Manzana A Casa 109<br>Villa del Prado Sector 1<br>Espinal - Tolima</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <p>+57 316 5589223<br>+57 301 5892768</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>mymultiserviciosingsas@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Horario de Atención</h4>
+                                <p>Lunes - Viernes: 7:00 - 12:00 / 2:00 - 5:00<br>Sábado: 8:00 - 12:00<br>Domingo:
+                                    Cerrado</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Redes Sociales -->
+                    <div class="social-section">
+                        <h3>Síguenos en Redes Sociales</h3>
+                        <div class="social-links-large">
+                            <a href="https://www.facebook.com/mymconstructora.espinal" title="Facebook"
+                                target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                            <a href="https://www.instagram.com/mymconstructora.espinal" title="Instagram"
+                                target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="https://wa.me/573165589223" title="WhatsApp" target="_blank"><i
+                                    class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-section">
+                    <h2>Formulario de Contacto</h2> 
+                    <div id="formMessage" class="form-message" style="display: none;"></div>
+                    <form class="contact-form contact-form-large" id="contactForm">
+                        <div class="form-group">
+                            <label for="nombre">Tu Nombre *</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Tu Email *</label>
+                            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Tu Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="+1 (555) 123-4567" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="asunto">Asunto *</label>
+                            <select id="asunto" name="asunto" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="presupuesto">Solicitar Presupuesto</option>
+                                <option value="reforma">Reforma y Renovación</option>
+                                <option value="construccion">Construcción</option>
+                                <option value="servicios">Otros Servicios</option>
+                                <option value="consulta">Consulta General</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Tu Mensaje *</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto..." rows="6"
+                                required></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-large" id="submitBtn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="map-section">
+        <div class="container">
+            <h2>Ubícanos en el Mapa</h2>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!4v1780682747616!6m8!1m7!1sWCRg18-0qWfuIWp6MEXkzw!2m2!1d4.155194560437523!2d-74.8907024888102!3f203.19191649295044!4f-26.28392139785273!5f0.7820865974627469"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Aún tienes preguntas?</h2>
+            <p>Nuestro equipo está disponible para ayudarte</p>
+            <a href="https://wa.me/573165589223" class="btn btn-primary">Llamar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>M&M CONSTRUCTORA</h3>
+                    <p>Dirección:</p>
+                    <p>Manzana A Casa 109 Villa del Prado Sector 1</p>
+                    <br>
+                    <p>Horario de atención:</p>
+                    <p>7:00am - 5:00pm</p>
+                    <p>Espinal - Tolima</p>
+                    <br>
+                    <p>Línea Nacional (+57) 316 558 9223</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="./about.html">Sobre Nosotros</a></li>
+                        <li><a href="./services.html">Servicios</a></li>
+                        <li><a href="./projects.html">Proyectos</a></li>
+                        <li><a href="./contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/mymconstructora.espinal" title="Facebook" target="_blank"><i
+                                class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/mymconstructora.espinal" title="Instagram" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/573165589223" title="WhatsApp" target="_blank"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 M&M Constructora. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/contact-form.js"></script>
+</body>
+
+</html>
