@@ -558,7 +558,7 @@ body {
 
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 50px;
     align-items: center;
 }
@@ -730,7 +730,7 @@ body {
 
 .about-collage-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr;
     gap: 16px;
 }
 
@@ -881,13 +881,13 @@ body {
 /* Servicios */
 .services {
     padding: 80px 20px;
-    background: var(--bg-light);
+    background: var(--secondary-color);
 }
 
 .services-page {
     background:
         radial-gradient(circle at top left, rgba(233, 30, 99, 0.08), transparent 35%),
-        linear-gradient(180deg, #fff0f5 0%, #fce4ec 100%);
+        linear-gradient(180deg, #ffffff 0%, #fff7fb 100%);
 }
 
 .services-hero {
@@ -1190,15 +1190,18 @@ body {
 }
 
 .service-card--modern {
-    position: relative;
+    background: #ffffff;
+    border: 1px solid rgba(233, 30, 99, 0.10);
+    border-radius: 20px;
+    padding: 32px 28px;
     overflow: hidden;
-    background: linear-gradient(180deg, #ffffff 0%, #fff9fc 100%);
-    border: 1px solid rgba(233, 30, 99, 0.08);
-    border-radius: 24px;
-    padding: 28px;
-    text-align: left;
-    box-shadow: 0 14px 30px rgba(44, 62, 80, 0.06);
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.07);
     transition: var(--transition);
+    position: relative;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .service-card--image-top {
@@ -1224,33 +1227,29 @@ body {
 }
 
 .service-card--modern::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(233, 30, 99, 0.04) 0%, rgba(255, 255, 255, 0) 45%);
-    pointer-events: none;
+    display: none;
 }
 
 .service-card--modern:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 22px 42px rgba(233, 30, 99, 0.14);
-    border-color: rgba(233, 30, 99, 0.16);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(233, 30, 99, 0.13);
+    border-color: rgba(233, 30, 99, 0.22);
 }
 
 .service-card--modern .service-card-head {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 16px;
     margin-bottom: 18px;
 }
 
 .service-card-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 18px;
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg, rgba(233, 30, 99, 0.12) 0%, rgba(233, 30, 99, 0.18) 100%);
+    background: rgba(233, 30, 99, 0.10);
     flex-shrink: 0;
 }
 
@@ -1263,56 +1262,71 @@ body {
 .service-card-tag {
     display: inline-flex;
     align-items: center;
-    padding: 7px 11px;
-    margin-bottom: 8px;
+    padding: 4px 12px;
+    margin-bottom: 6px;
     border-radius: 999px;
     background: rgba(233, 30, 99, 0.08);
     color: var(--primary-color);
-    font-size: 0.75rem;
+    border: none;
+    font-size: 0.72rem;
     font-weight: 800;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
 }
 
 .service-card--modern h3 {
     margin: 0;
-    font-size: 1.45rem;
+    font-size: 1.2rem;
     color: var(--text-dark);
+    line-height: 1.3;
 }
 
 .service-card--modern p {
     position: relative;
     z-index: 1;
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 0.93rem;
+    line-height: 1.75;
     color: #666;
-    margin-bottom: 18px;
+    margin: 0 0 18px;
+    padding: 0;
 }
 
 .service-card--modern .service-features {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
     position: relative;
     z-index: 1;
+    list-style: none;
+    margin-top: auto;
 }
 
 .service-card--modern .service-features li {
-    padding: 0 0 0 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(233, 30, 99, 0.07);
     color: var(--text-dark);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 0.80rem;
+    font-weight: 500;
 }
 
 .service-card--modern .service-features li::before {
-    top: 0.55em;
+    content: '✓';
+    font-weight: 800;
+    font-size: 0.75rem;
 }
 
 .service-card--highlight {
-    background: linear-gradient(180deg, #fff0f5 0%, #ffffff 100%);
-    border-color: rgba(233, 30, 99, 0.18);
+    border-color: rgba(233, 30, 99, 0.22);
+    box-shadow: 0 8px 28px rgba(233, 30, 99, 0.12);
 }
 
 .service-card--highlight .service-card-icon {
-    background: linear-gradient(135deg, rgba(233, 30, 99, 0.18) 0%, rgba(233, 30, 99, 0.28) 100%);
+    background: rgba(233, 30, 99, 0.15);
 }
 
 .services-grid {
@@ -1362,12 +1376,12 @@ body {
 .projects-page {
     background:
         radial-gradient(circle at top right, rgba(233, 30, 99, 0.08), transparent 34%),
-        linear-gradient(180deg, #fff0f5 0%, #fce4ec 100%);
+        linear-gradient(180deg, #ffffff 0%, #fff7fb 100%);
 }
 
 .projects-hero {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1fr;
     gap: 24px;
     margin: 10px 0 42px;
 }
@@ -1549,7 +1563,7 @@ body {
 
 .projects-showcase-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
 }
 
@@ -1601,7 +1615,7 @@ body {
 
 .projects-grid--modern {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 22px;
 }
 
@@ -1629,7 +1643,7 @@ body {
 
 .project-image--modern img {
     width: 100%;
-    height: 210px;
+    height: 240px;
     object-fit: cover;
     display: block;
     transition: transform 0.7s ease;
@@ -1660,11 +1674,11 @@ body {
 }
 
 .project-card--featured {
-    grid-row: span 2;
+    grid-row: auto;
 }
 
 .project-card--featured .project-image--modern img {
-    height: 250px;
+    height: 240px;
 }
 
 .project-card--modern .project-info {
@@ -1689,7 +1703,7 @@ body {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 30px;
 }
 
@@ -1752,12 +1766,12 @@ body {
 /* Contacto */
 .contact {
     padding: 80px 20px;
-    background: var(--bg-light);
+    background: var(--secondary-color);
 }
 
 .contact-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 50px;
 }
 
@@ -1883,7 +1897,7 @@ body {
 
 .related-projects .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
@@ -2070,7 +2084,7 @@ body {
 /* Testimonios */
 .testimonials {
     padding: 80px 20px;
-    background: var(--bg-light);
+    background: var(--secondary-color);
 }
 
 .testimonials h2 {
@@ -2943,7 +2957,7 @@ body {
 .contact-page {
     background:
         radial-gradient(circle at top right, rgba(233, 30, 99, 0.08), transparent 32%),
-        linear-gradient(180deg, #fff0f5 0%, #fce4ec 100%);
+        linear-gradient(180deg, #ffffff 0%, #fff7fb 100%);
 }
 
 .contact-hero {
