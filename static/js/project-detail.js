@@ -1,5 +1,4 @@
 
-
 // Datos de los proyectos
 const projectsData = {
     1: {
@@ -10,7 +9,7 @@ const projectsData = {
         priceFrom: "$350.000.000",
         priceTo: "$1.800.000.000",
         image: "../static/images/detalles/detallesreservas.png",
-        video: "../static/images/detalles/Invierte mym Constructura.mp4",
+        video: "../static/images/detalles/InviertemymConstructura.mp4",
         videoTitle: "Conoce Reservas del Poblado",
         gallery: [
             "../static/images/detalles/detallesreservas.png",
