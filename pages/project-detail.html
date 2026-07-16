@@ -49,14 +49,14 @@
                         <h1 id="projectTitle">Proyecto Premium</h1>
                         <p class="project-location" id="projectLocation">Ubicación, Ciudad - País</p>
 
-                        <div class="price-section-inline">
+                        <div class="price-section-inline" id="priceSectionInline">
                             <div class="price-item-inline">
-                                <span>Desde</span>
+                                <span id="labelPriceFrom">Desde</span>
                                 <p id="priceFrom">$350.000.000</p>
                             </div>
                             <div class="price-divider-inline"></div>
                             <div class="price-item-inline">
-                                <span>Hasta</span>
+                                <span id="labelPriceTo">Hasta</span>
                                 <p id="priceTo">$1.800.000.000</p>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                     <!-- Sección: Amenidades -->
                     <section id="amenidades-section" class="content-section">
                         <h2>Amenidades</h2>
-                        <div class="amenities-grid">
+                        <div class="amenities-grid" id="amenitiesGrid">
                             <div class="amenity-card">
                                 <i class="fas fa-swimming-pool"></i>
                                 <h4>Piscina</h4>
@@ -180,10 +180,10 @@
                                 <p id="specYear">2025</p>
                             </div>
                             <div class="spec-card">
-                                <div class="spec-icon">
+                                <div class="spec-icon" id="specIconFloors">
                                     <i class="fas fa-building"></i>
                                 </div>
-                                <h4>Cantidad de Pisos</h4>
+                                <h4 id="specLabelFloors">Cantidad de Pisos</h4>
                                 <p id="specFloors">15</p>
                             </div>
                             <div class="spec-card">
@@ -201,11 +201,11 @@
                                 <p id="specBathrooms">1 a 3</p>
                             </div>
                             <div class="spec-card">
-                                <div class="spec-icon">
+                                <div class="spec-icon" id="specIconParking">
                                     <i class="fas fa-car"></i>
                                 </div>
-                                <h4>Parqueadero</h4>
-                                <p>Incluido Subterráneo</p>
+                                <h4 id="specLabelParking">Parqueadero</h4>
+                                <p id="specParking">Incluido Subterráneo</p>
                             </div>
                         </div>
                     </section>
@@ -222,18 +222,18 @@
                         </div>
                     </section>
 
-                    <!-- Sección: Video del Proyecto (Malibu) -->
+                    <!-- Sección: Video del Proyecto -->
                     <section id="video-section" class="content-section video-section" style="display: none;">
-                        <h2>Conoce el Proyecto Malibu</h2>
+                        <h2 id="videoSectionTitle">Conoce el Proyecto</h2>
                         <div class="video-container">
-                            <video width="100%" height="auto" controls style="border-radius: 10px; margin-top: 20px;">
-                                <source src="../static/videos/videomalibu.mp4" type="video/mp4">
+                            <video id="projectVideoElement" width="100%" height="auto" controls
+                                style="border-radius: 10px; margin-top: 20px;">
                                 Tu navegador no soporta video HTML5.
                             </video>
                         </div>
                         <p style="margin-top: 20px; font-size: 1rem; color: #666; line-height: 1.6;">
                             Visualiza cómo será el proyecto completo. Este video muestra los detalles arquitectónicos,
-                            amenidades y características especiales del proyecto Malibu.
+                            amenidades y características especiales del proyecto.
                         </p>
                     </section>
                 </div>
@@ -245,7 +245,7 @@
                         <img id="mainImage" src="https://via.placeholder.com/700x500/e91e63/ffffff?text=Proyecto"
                             alt="Imagen del Proyecto" class="main-image">
                         <div class="image-overlay">
-                            <button class="overlay-btn" id="videoBtn">
+                            <button class="overlay-btn" id="videoBtn" style="display:none;">
                                 <i class="fas fa-play"></i> Ver Video
                             </button>
                             <button class="overlay-btn" id="tourBtn">
@@ -424,6 +424,16 @@
         </div>
     </footer>
 
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Imagen ampliada">
+            <p id="lightboxCaption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="../static/js/script.js"></script>
     <script src="../static/js/project-detail.js"></script>
@@ -468,18 +478,7 @@
             observer.observe(section);
         });
 
-        // Mostrar sección de video solo para proyecto Malibu
-        document.addEventListener('DOMContentLoaded', function () {
-            const projectTitle = document.getElementById('projectTitle');
-            const videoSection = document.getElementById('video-section');
-
-            // Verificar si el título contiene "Malibu" (excluyendo "Luxury Malibu")
-            if (projectTitle && projectTitle.textContent.includes('Malibu') && !projectTitle.textContent.includes('Luxury')) {
-                if (videoSection) {
-                    videoSection.style.display = 'block';
-                }
-            }
-        });
+        // Mostrar sección de video - ahora manejado desde project-detail.js
     </script>
 </body>
 

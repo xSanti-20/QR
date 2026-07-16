@@ -9,12 +9,25 @@ const projectsData = {
         description: "Proyecto residencial de lujo ubicado en una de las zonas más exclusivas de El Poblado. Cuenta con apartamentos modelos de 1 a 4 habitaciones, con acabados premium y vistas privilegiadas hacia la ciudad. Un proyecto que combina modernidad, seguridad y la mejor ubicación de la ciudad.",
         priceFrom: "$350.000.000",
         priceTo: "$1.800.000.000",
-        image: "https://via.placeholder.com/700x500/e91e63/ffffff?text=Reservas+del+Poblado",
-        area: "60 a 250 m²",
-        year: "2025",
+        image: "../static/images/detalles/detallesreservas.png",
+        video: "../static/images/detalles/Invierte mym Constructura.mp4",
+        videoTitle: "Conoce Reservas del Poblado",
+        gallery: [
+            "../static/images/detalles/detallesreservas.png",
+            "../static/images/detalles/vistareareservas.png",
+            "../static/images/carousel/proyecto1.jpeg",
+            "../static/images/carousel/proyecto2.jpeg"
+        ],
+        planos: [
+            { src: "../static/images/detalles/detallesreservas.png", label: "Vista General" },
+            { src: "../static/images/detalles/vistareareservas.jpeg", label: "Vista Aérea" },
+            { src: "../static/images/detalles/planoreservas.jpg", label: "Plano Arquitectónico" }
+        ],
+        area: "90 m²",
+        year: "2027",
         floors: "15",
-        bedrooms: "1 a 4",
-        bathrooms: "1 a 3",
+        bedrooms: "1 a 3",
+        bathrooms: "1 a 2",
         offer: "Descuento especial en preventa - Financiamiento hasta 240 meses",
         features: [
             "Apartamentos con balcones y terrazas",
@@ -64,6 +77,8 @@ const projectsData = {
         priceFrom: "$280.000.000",
         priceTo: "$900.000.000",
         image: "https://via.placeholder.com/700x500/e91e63/ffffff?text=Malibu",
+        video: "../static/videos/videomalibu.mp4",
+        videoTitle: "Conoce el Proyecto Malibu",
         area: "50 a 200 m²",
         year: "2025",
         floors: "12",
@@ -192,14 +207,94 @@ function loadProjectData(projectId) {
         ).join('');
         
         // Actualizar especificaciones técnicas
-        document.getElementById('specArea').textContent = project.area;
-        document.getElementById('specYear').textContent = project.year;
-        document.getElementById('specFloors').textContent = project.floors;
+        document.getElementById('specArea').textContent     = project.area;
+        document.getElementById('specYear').textContent     = project.year;
+        document.getElementById('specFloors').textContent   = project.floors;
         document.getElementById('specBedrooms').textContent = project.bedrooms;
-        document.getElementById('specBathrooms').textContent = project.bathrooms;
+        document.getElementById('specBathrooms').textContent= project.bathrooms;
+
+        // Labels y íonos personalizados de specs
+        if (project.floorLabel) {
+            document.getElementById('specLabelFloors').textContent = project.floorLabel;
+            document.getElementById('specIconFloors').innerHTML    = `<i class="${project.floorIcon || 'fas fa-building'}"></i>`;
+        }
+        if (project.parkingLabel) {
+            document.getElementById('specLabelParking').textContent = project.parkingLabel;
+            document.getElementById('specIconParking').innerHTML    = `<i class="${project.parkingIcon || 'fas fa-car'}"></i>`;
+            document.getElementById('specParking').textContent      = project.parking || '';
+        }
+
+        // Labels de precios y precio extra (lote)
+        if (project.labelFrom) document.getElementById('labelPriceFrom').textContent = project.labelFrom;
+        if (project.labelTo)   document.getElementById('labelPriceTo').textContent   = project.labelTo;
+        const priceSection = document.getElementById('priceSectionInline');
+        const existingLote = document.getElementById('priceLoteItem');
+        if (existingLote) existingLote.remove();
+        if (project.priceLote && priceSection) {
+            priceSection.insertAdjacentHTML('beforeend',
+                `<div class="price-divider-inline"></div>
+                 <div class="price-item-inline" id="priceLoteItem">
+                     <span>${project.labelLote || 'Lote'}</span>
+                     <p style="color:var(--primary-color);font-weight:700;font-size:1.3rem;margin:0">${project.priceLote}</p>
+                 </div>`);
+            priceSection.style.gridTemplateColumns = '1fr 50px 1fr 50px 1fr';
+        }
+
+        // Amenidades dinámicas
+        if (project.amenidades) {
+            const grid = document.getElementById('amenitiesGrid');
+            if (grid) {
+                grid.innerHTML = project.amenidades.map(a =>
+                    `<div class="amenity-card">
+                        <i class="${a.icon}"></i>
+                        <h4>${a.name}</h4>
+                        <p>${a.desc}</p>
+                    </div>`
+                ).join('');
+            }
+        }
         
         // Actualizar imagen principal
         document.getElementById('mainImage').src = project.image;
+
+        // Actualizar galería de miniaturas
+        if (project.gallery) {
+            const galleryItems = document.querySelectorAll('.gallery-sidebar .gallery-item img');
+            project.gallery.forEach((src, i) => {
+                if (galleryItems[i]) galleryItems[i].src = src;
+            });
+        }
+
+        // Actualizar planos arquitectónicos
+        if (project.planos) {
+            const planoItems = document.querySelectorAll('.plano-item');
+            // Ocultar todos primero
+            planoItems.forEach(item => item.style.display = 'none');
+            project.planos.forEach((plano, i) => {
+                if (planoItems[i]) {
+                    planoItems[i].style.display = 'block';
+                    planoItems[i].querySelector('img').src = plano.src;
+                    planoItems[i].querySelector('p').textContent = plano.label;
+                }
+            });
+        }
+
+        // Manejar sección de video
+        const videoSection = document.getElementById('video-section');
+        const videoEl = document.getElementById('projectVideoElement');
+        const videoBtn = document.getElementById('videoBtn');
+        const videoTitle = document.getElementById('videoSectionTitle');
+
+        if (project.video && videoSection && videoEl) {
+            videoEl.src = project.video;
+            videoEl.load();
+            videoSection.style.display = 'block';
+            if (videoTitle && project.videoTitle) videoTitle.textContent = project.videoTitle;
+            if (videoBtn) videoBtn.style.display = 'flex';
+        } else {
+            if (videoSection) videoSection.style.display = 'none';
+            if (videoBtn) videoBtn.style.display = 'none';
+        }
     }
 }
 
@@ -279,5 +374,52 @@ document.querySelectorAll('.btn-action')[1]?.addEventListener('click', function(
         });
     } else {
         alert('Compartir: ' + window.location.href);
+    }
+});
+
+// =============================================
+//  LIGHTBOX — vista completa de imágenes
+// =============================================
+
+const lightbox      = document.getElementById('lightbox');
+const lightboxImg   = document.getElementById('lightboxImg');
+const lightboxCap   = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxBack  = document.getElementById('lightboxBackdrop');
+
+function openLightbox(src, caption) {
+    lightboxImg.src = src;
+    lightboxCap.textContent = caption || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+// Cerrar con botón X y con clic en fondo
+lightboxClose?.addEventListener('click', closeLightbox);
+lightboxBack?.addEventListener('click', closeLightbox);
+
+// Cerrar con tecla Escape
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+});
+
+// Click en planos (delegado para imágenes cargadas dinámicamente)
+document.addEventListener('click', function(e) {
+    const planoItem = e.target.closest('.plano-item');
+    if (planoItem) {
+        const img     = planoItem.querySelector('img');
+        const caption = planoItem.querySelector('p')?.textContent;
+        if (img?.src) openLightbox(img.src, caption);
+    }
+
+    // Click en imagen principal del sidebar
+    if (e.target.closest('.main-image-container-sidebar') && !e.target.closest('.overlay-btn')) {
+        const img = document.getElementById('mainImage');
+        if (img?.src) openLightbox(img.src, document.getElementById('projectTitle')?.textContent);
     }
 });
