@@ -4,41 +4,47 @@ const projectsData = {
     1: {
         name: "Reservas del Poblado",
         category: "Residencial",
-        location: "El Poblado, Medellín - Colombia",
-        description: "Proyecto residencial de lujo ubicado en una de las zonas más exclusivas de El Poblado. Cuenta con apartamentos modelos de 1 a 4 habitaciones, con acabados premium y vistas privilegiadas hacia la ciudad. Un proyecto que combina modernidad, seguridad y la mejor ubicación de la ciudad.",
-        priceFrom: "$350.000.000",
-        priceTo: "$1.800.000.000",
+        location: "Espinal - Tolima",
+        locationDetail: "Espinal - Tolima",
+        description: "Proyecto residencial con unidades diseñadas para un estilo de vida cómodo y moderno en Espinal. Viviendas de 1 a 3 habitaciones, con acabados completos y una propuesta de desarrollo que integra zonas verdes y un parque biosaludable.",
+        priceFrom: "150M COP",
+        priceTo: "210M COP",
+        priceLote: "55M COP",
+        labelLote: "Solo Lote",
         image: "../static/images/detalles/detallesreservas.png",
         video: "../static/images/detalles/InviertemymConstructura.mp4",
         videoTitle: "Conoce Reservas del Poblado",
         gallery: [
             "../static/images/detalles/detallesreservas.png",
-            "../static/images/detalles/vistareareservas.png",
-            "../static/images/carousel/proyecto1.jpeg",
-            "../static/images/carousel/proyecto2.jpeg"
+            "../static/images/detalles/vistareareservas.jpeg",
+            "../static/images/detalles/planoreservas.jpg"
         ],
         planos: [
-            { src: "../static/images/detalles/detallesreservas.png", label: "Vista General" },
+            { src: "../static/images/detalles/planoreservas.jpg", label: "Plano Arquitectónico" },
             { src: "../static/images/detalles/vistareareservas.jpeg", label: "Vista Aérea" },
-            { src: "../static/images/detalles/planoreservas.jpg", label: "Plano Arquitectónico" }
+            { src: "../static/images/detalles/detallesreservas.png", label: "Vista General" }
         ],
         area: "90 m²",
         year: "2027",
-        floors: "15",
+        floors: "Libre construcción",
         bedrooms: "1 a 3",
         bathrooms: "1 a 2",
-        offer: "Descuento especial en preventa - Financiamiento hasta 240 meses",
+        offer: "Viviendas desde 150M hasta 210M COP. Lotes fijos desde 55 millones de pesos.",
         features: [
-            "Apartamentos con balcones y terrazas",
-            "Acabados de lujo premium",
-            "Sistema domótico inteligente",
-            "Piscina climatizada de espejo infinito",
-            "Gimnasio y sauna",
-            "Zona de coworking",
-            "Parqueadero subterráneo cubierto",
-            "Seguridad 24/7 con vigilancia CCTV",
-            "Zona común con BBQ",
-            "Acceso rápido a centros comerciales"
+            "Unidades con diseño funcional y acabados completos",
+            "Espacios pensados para el clima y la vida familiar",
+            "Acceso desde vías principales de Espinal",
+            "Áreas comunes seguras y bien iluminadas",
+            "Soluciones constructivas de alta calidad"
+        ],
+        floorLabel: "Libre construcción",
+        floorIcon: "fas fa-hammer",
+        parkingLabel: "Full acabados",
+        parkingIcon: "fas fa-paint-roller",
+        parking: "Incluidos",
+        amenidades: [
+            { icon: "fas fa-tree", name: "Zonas Verdes", desc: "Áreas verdes integradas para descanso y recreación." },
+            { icon: "fas fa-heartbeat", name: "Parque Biosaludable", desc: "Circuito biosaludable para ejercicio al aire libre." }
         ]
     },
     2: {
@@ -169,10 +175,10 @@ const projectsData = {
 };
 
 // Cargar datos del proyecto al entrar a la página
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const params = new URLSearchParams(window.location.search);
     const projectId = params.get('project') || 1;
-    
+
     loadProjectData(projectId);
     setupTabs();
     setupGallery();
@@ -182,50 +188,57 @@ document.addEventListener('DOMContentLoaded', function() {
 // Cargar datos dinámicos del proyecto
 function loadProjectData(projectId) {
     const project = projectsData[projectId];
-    
+
     if (project) {
         // Actualizar title
         document.getElementById('projectTitle').textContent = project.name;
         document.getElementById('categoryBadge').textContent = project.category;
         document.getElementById('projectLocation').textContent = project.location;
-        
+
         // Actualizar precios
         document.getElementById('priceFrom').textContent = project.priceFrom;
         document.getElementById('priceTo').textContent = project.priceTo;
-        
+
+        // Actualizar ubicación principal y detalle
+        document.getElementById('projectLocation').textContent = project.location;
+        const locationDetailElem = document.getElementById('projectLocationDetail');
+        if (locationDetailElem) {
+            locationDetailElem.textContent = project.locationDetail || project.location;
+        }
+
         // Actualizar oferta
         document.getElementById('projectOffer').textContent = project.offer;
-        
+
         // Actualizar descripción
         document.getElementById('projectFullDescription').textContent = project.description;
-        
+
         // Actualizar características
         const featuresList = document.getElementById('projectFeatures');
-        featuresList.innerHTML = project.features.map(feature => 
+        featuresList.innerHTML = project.features.map(feature =>
             `<li><i class="fas fa-check"></i> ${feature}</li>`
         ).join('');
-        
+
         // Actualizar especificaciones técnicas
-        document.getElementById('specArea').textContent     = project.area;
-        document.getElementById('specYear').textContent     = project.year;
-        document.getElementById('specFloors').textContent   = project.floors;
+        document.getElementById('specArea').textContent = project.area;
+        document.getElementById('specYear').textContent = project.year;
+        document.getElementById('specFloors').textContent = project.floors;
         document.getElementById('specBedrooms').textContent = project.bedrooms;
-        document.getElementById('specBathrooms').textContent= project.bathrooms;
+        document.getElementById('specBathrooms').textContent = project.bathrooms;
 
         // Labels y íonos personalizados de specs
         if (project.floorLabel) {
             document.getElementById('specLabelFloors').textContent = project.floorLabel;
-            document.getElementById('specIconFloors').innerHTML    = `<i class="${project.floorIcon || 'fas fa-building'}"></i>`;
+            document.getElementById('specIconFloors').innerHTML = `<i class="${project.floorIcon || 'fas fa-building'}"></i>`;
         }
         if (project.parkingLabel) {
             document.getElementById('specLabelParking').textContent = project.parkingLabel;
-            document.getElementById('specIconParking').innerHTML    = `<i class="${project.parkingIcon || 'fas fa-car'}"></i>`;
-            document.getElementById('specParking').textContent      = project.parking || '';
+            document.getElementById('specIconParking').innerHTML = `<i class="${project.parkingIcon || 'fas fa-car'}"></i>`;
+            document.getElementById('specParking').textContent = project.parking || '';
         }
 
         // Labels de precios y precio extra (lote)
         if (project.labelFrom) document.getElementById('labelPriceFrom').textContent = project.labelFrom;
-        if (project.labelTo)   document.getElementById('labelPriceTo').textContent   = project.labelTo;
+        if (project.labelTo) document.getElementById('labelPriceTo').textContent = project.labelTo;
         const priceSection = document.getElementById('priceSectionInline');
         const existingLote = document.getElementById('priceLoteItem');
         if (existingLote) existingLote.remove();
@@ -234,7 +247,7 @@ function loadProjectData(projectId) {
                 `<div class="price-divider-inline"></div>
                  <div class="price-item-inline" id="priceLoteItem">
                      <span>${project.labelLote || 'Lote'}</span>
-                     <p style="color:var(--primary-color);font-weight:700;font-size:1.3rem;margin:0">${project.priceLote}</p>
+                     <p style="color:var(--primary-color);font-weight:700;font-size:2 rem;margin:0">${project.priceLote}</p>
                  </div>`);
             priceSection.style.gridTemplateColumns = '1fr 50px 1fr 50px 1fr';
         }
@@ -252,15 +265,20 @@ function loadProjectData(projectId) {
                 ).join('');
             }
         }
-        
+
         // Actualizar imagen principal
         document.getElementById('mainImage').src = project.image;
 
         // Actualizar galería de miniaturas
         if (project.gallery) {
-            const galleryItems = document.querySelectorAll('.gallery-sidebar .gallery-item img');
-            project.gallery.forEach((src, i) => {
-                if (galleryItems[i]) galleryItems[i].src = src;
+            const galleryImgs = document.querySelectorAll('.gallery-sidebar .gallery-item img');
+            galleryImgs.forEach((img, i) => {
+                if (project.gallery[i]) {
+                    img.src = project.gallery[i];
+                    img.closest('.gallery-item').style.display = 'block';
+                } else {
+                    img.closest('.gallery-item').style.display = 'none';
+                }
             });
         }
 
@@ -301,15 +319,15 @@ function loadProjectData(projectId) {
 function setupTabs() {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
-    
+
     tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const tabName = this.getAttribute('data-tab');
-            
+
             // Remover clase active de todos los tabs
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabContents.forEach(content => content.classList.remove('active'));
-            
+
             // Agregar clase active al tab seleccionado
             this.classList.add('active');
             document.getElementById(`${tabName}-tab`).classList.add('active');
@@ -321,9 +339,9 @@ function setupTabs() {
 function setupGallery() {
     const galleryItems = document.querySelectorAll('.gallery-item');
     const mainImage = document.getElementById('mainImage');
-    
+
     galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             const img = this.querySelector('img');
             mainImage.src = img.src;
         });
@@ -333,10 +351,10 @@ function setupGallery() {
 // Filtrar proyectos recomendados para excluir el proyecto actual
 function filterRelatedProjects(currentProjectId) {
     const relatedCards = document.querySelectorAll('.related-projects .project-card');
-    
+
     relatedCards.forEach(card => {
         const cardProjectId = card.getAttribute('data-project-id');
-        
+
         if (cardProjectId === currentProjectId.toString()) {
             card.style.display = 'none';
         } else {
@@ -346,25 +364,25 @@ function filterRelatedProjects(currentProjectId) {
 }
 
 // Botones de Video y Tour Virtual
-document.getElementById('videoBtn')?.addEventListener('click', function() {
+document.getElementById('videoBtn')?.addEventListener('click', function () {
     const videoSection = document.getElementById('video-section');
     if (videoSection) {
         videoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 });
 
-document.getElementById('tourBtn')?.addEventListener('click', function() {
+document.getElementById('tourBtn')?.addEventListener('click', function () {
     alert('Tour virtual interactivo cargará aquí');
     // Implementar tour virtual
 });
 
 // Botón de comparar
-document.querySelectorAll('.btn-action')[0]?.addEventListener('click', function() {
+document.querySelectorAll('.btn-action')[0]?.addEventListener('click', function () {
     alert('Funcionalidad de comparación de proyectos');
 });
 
 // Botón de compartir
-document.querySelectorAll('.btn-action')[1]?.addEventListener('click', function() {
+document.querySelectorAll('.btn-action')[1]?.addEventListener('click', function () {
     if (navigator.share) {
         navigator.share({
             title: document.getElementById('projectTitle').textContent,
@@ -380,11 +398,11 @@ document.querySelectorAll('.btn-action')[1]?.addEventListener('click', function(
 //  LIGHTBOX — vista completa de imágenes
 // =============================================
 
-const lightbox      = document.getElementById('lightbox');
-const lightboxImg   = document.getElementById('lightboxImg');
-const lightboxCap   = document.getElementById('lightboxCaption');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCap = document.getElementById('lightboxCaption');
 const lightboxClose = document.getElementById('lightboxClose');
-const lightboxBack  = document.getElementById('lightboxBackdrop');
+const lightboxBack = document.getElementById('lightboxBackdrop');
 
 function openLightbox(src, caption) {
     lightboxImg.src = src;
@@ -408,10 +426,10 @@ document.addEventListener('keydown', e => {
 });
 
 // Click en planos (delegado para imágenes cargadas dinámicamente)
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     const planoItem = e.target.closest('.plano-item');
     if (planoItem) {
-        const img     = planoItem.querySelector('img');
+        const img = planoItem.querySelector('img');
         const caption = planoItem.querySelector('p')?.textContent;
         if (img?.src) openLightbox(img.src, caption);
     }
