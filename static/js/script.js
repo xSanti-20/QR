@@ -131,50 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return '';
     })();
 
-    function getThumbnailEndpoint(instagramUrl) {
-        const encodedUrl = encodeURIComponent(instagramUrl);
-        return `${BACKEND_BASE_URL}/api/reels?url=${encodedUrl}`;
-    }
-
-    async function loadPostThumbnails() {
-        posts.forEach((post, index) => {
-            const instagramUrl = post.getAttribute('href');
-            if (!instagramUrl || !instagramUrl.includes('instagram.com')) return;
-
-            const cleanUrl = instagramUrl.split('?')[0].replace(/\/?$/, '');
-            const endpoint = getThumbnailEndpoint(cleanUrl);
-            console.log('Cargando miniatura de Instagram:', cleanUrl, endpoint);
-
-            fetch(endpoint)
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then((data) => {
-                            throw new Error(`${response.status} ${response.statusText}: ${data.error || 'Error al obtener thumbnail'}`);
-                        }).catch(() => {
-                            throw new Error(`${response.status} ${response.statusText}`);
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Respuesta del backend de Instagram:', data);
-                    const imageUrl = data && (data.image || data.thumbnail);
-                    if (imageUrl) {
-                        setPostThumbnail(post, imageUrl);
-                        console.log('Miniatura cargada para post', index + 1);
-                    } else {
-                        throw new Error('Respuesta inválida del servidor');
-                    }
-                })
-                .catch(error => {
-                    console.warn('No se pudo cargar la miniatura de Instagram:', error);
-                    setPostThumbnail(post, fallbackImage);
-                });
-        });
-    }
-
-    loadPostThumbnails();
-
     // Calculate scroll distance
     const postStyle = window.getComputedStyle(posts[0]);
     const postWidth = posts[0].offsetWidth;
@@ -251,39 +207,4 @@ document.addEventListener('DOMContentLoaded', function() {
         playIcon.innerHTML = '<i class="fas fa-play"></i>';
         post.appendChild(playIcon);
     });
-
-    // Load Instagram reel thumbnails automatically using an HTML proxy.
-    // Nota: Instagram bloquea peticiones directas desde el navegador. Si quieres miniaturas 100% fiables,
-    // es mejor hacerlo desde un servidor con Instagram o un proxy propio.
-    const fallbackImage = 'https://via.placeholder.com/300x400/000000/ffffff?text=Reel+no+disponible';
-
-    function fetchInstagramThumbnail(instagramUrl) {
-        const cleanUrl = instagramUrl.split('?')[0].replace(/\/$/, '');
-        const endpoint = getThumbnailEndpoint(cleanUrl);
-
-        return fetch(endpoint)
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then((data) => {
-                        throw new Error(data.error || 'Error al obtener thumbnail');
-                    });
-                }
-                return response.json();
-            })
-            .then(data => {
-                const imageUrl = data && (data.image || data.thumbnail);
-                if (imageUrl) {
-                    return imageUrl;
-                }
-                throw new Error('Respuesta inválida del servidor');
-            });
-    }
-
-    function setPostThumbnail(post, imageUrl) {
-        const img = post.querySelector('img');
-        if (img) {
-            img.src = imageUrl;
-            img.style.objectFit = 'cover';
-        }
-    }
 });

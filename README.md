@@ -16,13 +16,13 @@ Sistema completo de código QR que dirige a una página web personalizada con to
 
 ## Backend para miniaturas de Instagram
 
-Este proyecto incluye un pequeño backend Node.js que obtiene las miniaturas de Instagram a partir de la URL pública de cada reel o publicación.
+Este proyecto incluye un servidor Node.js básico para entregar la página estática y servir los recursos locales.
 
 ### Archivos importantes
 
-- `server.js` — servidor Express que sirve el sitio y los endpoints `/thumbnail`, `/reels`, `/api/thumbnail` y `/api/reels`
+- `server.js` — servidor Express que sirve el sitio estático y el endpoint de salud `/health`
 - `package.json` — dependencias necesarias para ejecutar el backend
-- `static/js/script.js` — consume `/api/reels?url=...` y actualiza las imágenes del carrusel
+- `static/js/script.js` — controla el carrusel y usa imágenes locales definidas en `index.html`
 
 ### Uso local
 
@@ -30,10 +30,6 @@ Este proyecto incluye un pequeño backend Node.js que obtiene las miniaturas de 
    ```powershell
    cd C:\PaginaWeb\QR
    "C:\Program Files\nodejs\npm.cmd" install
-   ```
-2. Si quieres usar el scraper directo de Instagram, instala también:
-   ```powershell
-   "C:\Program Files\nodejs\npm.cmd" install instagram-url-direct
    ```
 2. Inicia el servidor:
    ```powershell
@@ -47,35 +43,22 @@ Este proyecto incluye un pequeño backend Node.js que obtiene las miniaturas de 
 ### Despliegue en producción
 
 1. Despliega `server.js` en un hosting que soporte Node.js (Vercel, Railway, Render, DigitalOcean, etc.).
-2. Actualiza `static/js/script.js` cambiando `BACKEND_BASE_URL` a la URL de tu backend desplegado.
-3. Asegúrate de que el backend soporte CORS si la página estática y el backend y la web quedan en dominios distintos.
+2. El sitio estático usa imágenes locales en `static/images/...` y no requiere acceso a Instagram.
 
 ### Cómo funciona el backend
 
-Este backend obtiene miniaturas públicas de Instagram leyendo las meta-tags públicas de la página de la publicación o reel. No necesita un token de la Graph API.
+Este backend solo sirve el contenido estático y un endpoint de salud.
 
-#### Endpoints disponibles
+#### Endpoint disponible
 
-- `GET /thumbnail?url=https://www.instagram.com/reel/REEL_ID/`
-- `GET /reels?url=https://www.instagram.com/reel/REEL_ID/`
+- `GET /health`
 
-#### Respuesta de `/thumbnail`
-
-```json
-{
-  "image": "https://...",
-  "url": "https://www.instagram.com/reel/DXfdno7jx4n/",
-  "caption": "Texto del reel"
-}
-```
-
-#### Respuesta de `/reels`
+#### Respuesta
 
 ```json
 {
-  "thumbnail": "https://...",
-  "url": "https://www.instagram.com/reel/DXfdno7jx4n/",
-  "caption": "Texto del reel"
+  "status": "ok",
+  "service": "static-assets"
 }
 ```
 
