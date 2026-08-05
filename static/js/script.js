@@ -121,6 +121,60 @@ document.addEventListener('DOMContentLoaded', function() {
     const posts = document.querySelectorAll('.instagram-post');
     if (posts.length === 0) return;
 
+    // Base URL del backend de miniaturas.
+    // Si ejecutas localmente con file://, usa el servidor local en localhost:3000.
+    // En producción usa el mismo origen (https://mymsoftcom.me).
+    const BACKEND_BASE_URL = (() => {
+        if (window.location.protocol === 'file:') {
+            return 'http://localhost:3000';
+        }
+        return '';
+    })();
+
+    function getThumbnailEndpoint(instagramUrl) {
+        const encodedUrl = encodeURIComponent(instagramUrl);
+        return `${BACKEND_BASE_URL}/api/reels?url=${encodedUrl}`;
+    }
+
+    async function loadPostThumbnails() {
+        posts.forEach((post, index) => {
+            const instagramUrl = post.getAttribute('href');
+            if (!instagramUrl || !instagramUrl.includes('instagram.com')) return;
+
+            const cleanUrl = instagramUrl.split('?')[0].replace(/\/?$/, '');
+            const endpoint = getThumbnailEndpoint(cleanUrl);
+            console.log('Cargando miniatura de Instagram:', cleanUrl, endpoint);
+
+            fetch(endpoint)
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then((data) => {
+                            throw new Error(`${response.status} ${response.statusText}: ${data.error || 'Error al obtener thumbnail'}`);
+                        }).catch(() => {
+                            throw new Error(`${response.status} ${response.statusText}`);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Respuesta del backend de Instagram:', data);
+                    const imageUrl = data && (data.image || data.thumbnail);
+                    if (imageUrl) {
+                        setPostThumbnail(post, imageUrl);
+                        console.log('Miniatura cargada para post', index + 1);
+                    } else {
+                        throw new Error('Respuesta inválida del servidor');
+                    }
+                })
+                .catch(error => {
+                    console.warn('No se pudo cargar la miniatura de Instagram:', error);
+                    setPostThumbnail(post, fallbackImage);
+                });
+        });
+    }
+
+    loadPostThumbnails();
+
     // Calculate scroll distance
     const postStyle = window.getComputedStyle(posts[0]);
     const postWidth = posts[0].offsetWidth;
@@ -198,62 +252,38 @@ document.addEventListener('DOMContentLoaded', function() {
         post.appendChild(playIcon);
     });
 
-    // Load Instagram reel thumbnails
-    posts.forEach((post, index) => {
-        const instagramUrl = post.getAttribute('href');
-        if (instagramUrl && instagramUrl.includes('instagram.com')) {
-            const cleanUrl = instagramUrl.split('?')[0];
-            const encodedUrl = encodeURIComponent(cleanUrl);
-            
-            // Method 1: Try using cors-anywhere proxy to get og:image
-            fetch('https://cors-anywhere.herokuapp.com/' + cleanUrl, {
-                headers: {
-                    'Accept': 'text/html',
-                }
-            })
-            .then(response => response.text())
-            .then(html => {
-                // Extract og:image from meta tag
-                const ogImageMatch = html.match(/<meta property="og:image" content="([^"]+)"/);
-                if (ogImageMatch && ogImageMatch[1]) {
-                    const img = post.querySelector('img');
-                    if (img) {
-                        img.src = ogImageMatch[1];
-                        img.style.objectFit = 'cover';
-                        console.log('Thumbnail loaded for post', index + 1);
-                    }
-                    return;
-                }
-                throw new Error('No og:image found');
-            })
-            .catch(() => {
-                // Method 2: Try alternative CORS proxy
-                return fetch('https://api.allorigins.win/raw?url=' + encodedUrl)
-                    .then(response => response.text())
-                    .then(html => {
-                        const ogImageMatch = html.match(/<meta property="og:image" content="([^"]+)"/);
-                        if (ogImageMatch && ogImageMatch[1]) {
-                            const img = post.querySelector('img');
-                            if (img) {
-                                img.src = ogImageMatch[1];
-                                img.style.objectFit = 'cover';
-                                console.log('Thumbnail loaded via allorigins for post', index + 1);
-                            }
-                            return;
-                        }
-                        throw new Error('No og:image found');
+    // Load Instagram reel thumbnails automatically using an HTML proxy.
+    // Nota: Instagram bloquea peticiones directas desde el navegador. Si quieres miniaturas 100% fiables,
+    // es mejor hacerlo desde un servidor con Instagram o un proxy propio.
+    const fallbackImage = 'https://via.placeholder.com/300x400/000000/ffffff?text=Reel+no+disponible';
+
+    function fetchInstagramThumbnail(instagramUrl) {
+        const cleanUrl = instagramUrl.split('?')[0].replace(/\/$/, '');
+        const endpoint = getThumbnailEndpoint(cleanUrl);
+
+        return fetch(endpoint)
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then((data) => {
+                        throw new Error(data.error || 'Error al obtener thumbnail');
                     });
-            })
-            .catch(() => {
-                // Method 3: Try screenshot.rocks API
-                const screenshotUrl = 'https://screenshot.rocks/?url=' + encodedUrl + '&width=300&height=400';
-                const img = post.querySelector('img');
-                if (img) {
-                    img.src = screenshotUrl;
-                    img.style.objectFit = 'cover';
-                    console.log('Using screenshot service for post', index + 1);
                 }
+                return response.json();
+            })
+            .then(data => {
+                const imageUrl = data && (data.image || data.thumbnail);
+                if (imageUrl) {
+                    return imageUrl;
+                }
+                throw new Error('Respuesta inválida del servidor');
             });
+    }
+
+    function setPostThumbnail(post, imageUrl) {
+        const img = post.querySelector('img');
+        if (img) {
+            img.src = imageUrl;
+            img.style.objectFit = 'cover';
         }
-    });
+    }
 });
