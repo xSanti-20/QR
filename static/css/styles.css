@@ -1901,10 +1901,11 @@ body {
 
 .related-projects .projects-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    max-width: 1320px;
     margin: 0 auto;
+    align-items: stretch;
 }
 
 @media (max-width: 768px) {
