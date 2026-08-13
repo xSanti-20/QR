@@ -43,7 +43,6 @@
                     <!-- Info de Cabecera -->
                     <div class="project-header-info">
                         <div class="badges">
-                            <span class="badge badge-primary">Entrega Inmediata</span>
                             <span class="badge badge-secondary" id="categoryBadge">Residencial</span>
                         </div>
                         <h1 id="projectTitle">Proyecto Premium</h1>
@@ -54,8 +53,8 @@
                                 <span id="labelPriceFrom">Desde</span>
                                 <p id="priceFrom">$350.000.000</p>
                             </div>
-                            <div class="price-divider-inline"></div>
-                            <div class="price-item-inline">
+                            <div class="price-divider-inline" id="priceRangeDivider"></div>
+                            <div class="price-item-inline" id="priceToItem">
                                 <span id="labelPriceTo">Hasta</span>
                                 <p id="priceTo">$1.800.000.000</p>
                             </div>
@@ -84,10 +83,10 @@
                     <!-- Contenido Scrolleable -->
                     <!-- Sección: Descripción -->
                     <section id="descripcion-section" class="content-section">
-                        <h2>Descripción del Proyecto</h2>
+                        <h2 id="projectDescriptionTitle">Descripción del Proyecto</h2>
 
                         <!-- Oferta Especial -->
-                        <div class="special-offer">
+                        <div class="special-offer" id="projectOfferBox">
                             <p class="offer-title">Oferta Especial</p>
                             <p class="offer-text" id="projectOffer">Descuento especial disponible</p>
                         </div>
@@ -95,11 +94,16 @@
                         <p id="projectFullDescription">Descripción completa del proyecto que se cargará dinámicamente.
                         </p>
 
-                        <h3>Características Principales</h3>
+                        <h3 id="projectFeaturesHeading">Características Principales</h3>
                         <ul id="projectFeatures" class="features-list">
                             <li><i class="fas fa-check"></i> Característica 1</li>
                             <li><i class="fas fa-check"></i> Característica 2</li>
                         </ul>
+
+                        <div class="project-hours" style="display: none;">
+                            <h3>Horarios de atención</h3>
+                            <div id="projectHours" class="amenities-grid"></div>
+                        </div>
                     </section>
 
                     <!-- Sección: Planos -->
@@ -211,14 +215,13 @@
                     </section>
 
                     <!-- Sección: Ubicación -->
-                    <section id="ubicacion-section" class="content-section">
+                    <section id="ubicacion-section" class="content-section" style="display: none;">
                         <h2>Ubicación del Proyecto</h2>
                         <p id="projectLocationDetail">Ubicación completa que se cargará dinámicamente.</p>
                         <div class="map-container" style="margin-top: 30px; border-radius: 8px; overflow: hidden;">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39666.521671411262!2d-75.21433!3d4.402107999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4f07f5464786b7%3A0x260b793b20d2d45a!2sEspinal%2C%20Tolima!5e0!3m2!1ses!2sco!4v1234567890"
-                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe id="projectMap"
+                                src="" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"></iframe>
                         </div>
                     </section>
 
@@ -255,7 +258,7 @@
                     </div>
 
                     <!-- Galería de Imágenes -->
-                    <div class="gallery-sidebar">
+                    <div class="gallery-sidebar" id="gallerySidebar">
                         <div class="gallery-item">
                             <img src="https://via.placeholder.com/150x120/e91e63/ffffff?text=Img1" alt="Galería 1">
                         </div>
@@ -358,12 +361,12 @@
                         <span class="project-badge">Residencial</span>
                     </div>
                     <div class="project-info project-info--modern">
-                        <h3>Malibu</h3>
-                        <p class="project-category">Apartamentos modernos</p>
-                        <p class="project-description">Proyecto urbano en Envigado con espacios funcionales y excelente conectividad.</p>
+                        <h3>Urbanización Malibu</h3>
+                        <p class="project-category">Proyecto residencial en Espinal</p>
+                        <p class="project-description">Proyecto urbanístico residencial con diseño moderno y acabados de lujo, ideal para tu familia.</p>
                         <div class="project-details">
                             <span><i class="fas fa-ruler"></i> 105 m²</span>
-                            <span><i class="fas fa-calendar"></i> 2024</span>
+                            <span><i class="fas fa-calendar"></i> 2027</span>
                         </div>
                     </div>
                 </a>

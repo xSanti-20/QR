@@ -6,6 +6,7 @@ const projectsData = {
         category: "Residencial",
         location: "Espinal - Tolima",
         locationDetail: "Espinal - Tolima",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4896.529240332806!2d-74.87141532418691!3d4.141163046252356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3ed129afb04a61%3A0x133f8c08f51f2059!2sURBANIZACION%20RESERVAS%20DEL%20POBLADO!5e1!3m2!1ses!2sco!4v1786657882922!5m2!1ses!2sco",
         description: "Proyecto residencial con unidades diseñadas para un estilo de vida cómodo y moderno en Espinal. Viviendas de 1 a 3 habitaciones, con acabados completos y una propuesta de desarrollo que integra zonas verdes y un parque biosaludable.",
         priceFrom: "150M COP",
         priceTo: "210M COP",
@@ -50,11 +51,17 @@ const projectsData = {
     2: {
         name: "Luxury Malibu",
         category: "Residencial Lujo",
-        location: "Sabaneta, Área Metropolitana - Colombia",
-        description: "Proyecto de casas de lujo en Sabaneta con diseño arquitectónico moderno y contemporáneo. Cada casa cuenta con características exclusivas, amplios espacios, sistemas inteligentes y ubicación privilegiada en una zona residencial de alto nivel.",
-        priceFrom: "$800.000.000",
-        priceTo: "$2.500.000.000",
+        location: "Espinal - Tolima, Colombia",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!4v1786658641503!6m8!1m7!1sDiuGwZUDiA7Mry8U-Mw2Ug!2m2!1d4.14943246471397!2d-74.8988331295386!3f218.01487072901736!4f0.3690725560196597!5f0.7820865974627469",
+        description: "Proyecto de casas de lujo en Espinal con diseño arquitectónico moderno y contemporáneo. Cada casa cuenta con características exclusivas, amplios espacios, sistemas inteligentes y ubicación privilegiada en una zona residencial de alto nivel.",
+        priceFrom: "$83.500.000",
+        labelFrom: "Valor del conjunto",
         image: "https://via.placeholder.com/700x500/e91e63/ffffff?text=Luxury+Malibu",
+        planos: [
+            { src: "../static/images/PLANOLUXURY.jpg", label: "Plano Luxury Malibu" },
+            { src: "../static/images/detalles/vistareareservas.jpeg", label: "Vista Aérea" },
+            { src: "../static/images/detalles/detallesreservas.png", label: "Vista General" }
+        ],
         area: "250 a 500 m²",
         year: "2026",
         floors: "2 a 3",
@@ -75,61 +82,71 @@ const projectsData = {
         ]
     },
     3: {
-        name: "Malibu",
+        name: "Urbanización Malibu",
         category: "Residencial",
-        location: "Envigado, Área Metropolitana - Colombia",
-        description: "Proyecto residencial moderno en Envigado ofreciendo apartamentos de confort y estilo. Con ubicación estratégica, acceso rápido a zonas comerciales y de servicios, ideales para familias que buscan seguridad y calidad de vida.",
-        priceFrom: "$280.000.000",
-        priceTo: "$900.000.000",
+        location: "Espinal - Tolima, Colombia",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!4v1786658641503!6m8!1m7!1sDiuGwZUDiA7Mry8U-Mw2Ug!2m2!1d4.14943246471397!2d-74.8988331295386!3f218.01487072901736!4f0.3690725560196597!5f0.7820865974627469",
+        description: "Proyecto urbanístico residencial con diseño moderno y acabados de lujo, ideal para tu familia. Urbanización Malibu ofrece espacios funcionales, zonas para compartir y un entorno pensado para disfrutar una vida cómoda y tranquila.",
+        priceFrom: "$210M COP",
+        priceTo: "$250M COP",
+        priceLote: "$59.500.000",
+        labelLote: "Lote",
         image: "https://via.placeholder.com/700x500/e91e63/ffffff?text=Malibu",
         video: "../static/videos/videomalibu.mp4",
         videoTitle: "Conoce el Proyecto Malibu",
-        area: "50 a 200 m²",
-        year: "2025",
-        floors: "12",
-        bedrooms: "1 a 3",
-        bathrooms: "1 a 2",
+        planos: [
+            { src: "../static/images/PLANOMALIBU.jpg", label: "Plano Arquitectonico" },
+            { src: "../static/images/detalles/vistareareservas.jpeg", label: "Vista Aérea" },
+            { src: "../static/images/detalles/detallesreservas.png", label: "Vista General" }
+        ],
+        area: "105 m²",
+        year: "2027",
+        floors: "Urbanización residencial",
+        bedrooms: "3",
+        bathrooms: "2",
         offer: "Preventa con cuotas iniciales flexibles - Subsidio de tasa de interés",
         features: [
-            "Apartamentos modernos y funcionales",
-            "Acabados en materiales de calidad",
-            "Áreas comunes amplias",
-            "Piscina y zona de recreación",
-            "Gimnasio equipado",
-            "Parqueadero cubierto",
-            "Ascensores de última generación",
-            "Servicios de vigilancia constante",
-            "Zona infantil segura",
-            "Fácil acceso a centros comerciales"
+            "Garaje, sala, comedor y cocina tipo americana",
+            "3 habitaciones, con habitación principal y baño privado",
+            "Baño social, patio de ropas y depósito",
+            "Tanques elevados y cubierta arquitectónica",
+            "Pisos en cerámica",
+            "Cocina y patio de ropas enchapados",
+            "Puertas y ventanas internas en madera",
+            "Puertas y ventanas de fachada metálicas"
+        ],
+        parkingLabel: "Garaje",
+        parkingIcon: "fas fa-car",
+        parking: "Incluido",
+        amenidades: [
+            { icon: "fas fa-swimming-pool", name: "Piscina comunal", desc: "Espacio de recreación para compartir en familia." },
+            { icon: "fas fa-child", name: "Parque infantil", desc: "Zona segura para el juego y la diversión de los niños." },
+            { icon: "fas fa-tree", name: "Áreas verdes", desc: "Entornos naturales para descanso y convivencia." },
+            { icon: "fas fa-leaf", name: "Sendero ecológico", desc: "Recorrido integrado al entorno natural de la urbanización." },
+            { icon: "fas fa-volleyball-ball", name: "Cancha múltiple", desc: "Espacio deportivo para diferentes actividades." },
+            { icon: "fas fa-school", name: "Zona institucional", desc: "Área reservada para servicios y equipamientos comunitarios." }
         ]
     },
     4: {
-        name: "Local Comercial Moderno",
-        category: "Comercial",
-        location: "Zona Comercial Estratégica",
-        description: "Diseño y ejecución de local comercial moderno de 180 m². Incluye zona de ventas, almacén y oficinas.",
-        priceFrom: "$120.000.000",
-        priceTo: "$200.000.000",
-        image: "https://via.placeholder.com/700x500/e91e63/ffffff?text=Local",
-        area: "180 m²",
-        year: "2024",
-        floors: "1",
-        bedrooms: "0",
-        bathrooms: "2",
-        offer: "Incluye diseño interior y decoración",
-        features: [
-            "Zona de ventas amplia",
-            "Almacén bien distribuido",
-            "Oficinas administrativas",
-            "Servicios sanitarios modernos",
-            "Iluminación LED eficiente",
-            "Aire acondicionado central"
-        ]
+        name: "Sala de Ventas Moderno",
+        category: "Sala de ventas",
+        location: "Espinal - Tolima, Colombia",
+        description: "Visítanos en nuestra Sala de Ventas Moderno en Espinal, Tolima. Allí podrás recibir asesoría personalizada sobre nuestros proyectos.",
+        image: "../static/images/saladenegocios.png",
+        gallery: ["../static/images/saladenegocios.png"],
+        hours: [
+            { name: "Lunes a viernes", desc: "8:00 a.m. a 12:00 m. y 2:00 p.m. a 5:00 p.m." },
+            { name: "Sábados", desc: "8:00 a.m. a 12:00 m. y 2:00 p.m. a 4:00 p.m." },
+            { name: "Domingos", desc: "9:00 a.m. a 3:00 p.m." }
+        ],
+        mapEmbed: "https://www.google.com/maps/embed?pb=!4v1786657237490!6m8!1m7!1sDiuGwZUDiA7Mry8U-Mw2Ug!2m2!1d4.14943246471397!2d-74.8988331295386!3f235.86388922645932!4f-1.9990058248597649!5f0.7820865974627469",
+        simpleDetail: true,
+        detailTitle: "Sala de Ventas"
     },
     5: {
         name: "Casa Campestre Lujosa",
         category: "Residencial",
-        location: "Zona Rural Premium",
+        location: "Espinal - Tolima, Colombia",
         description: "Vivienda campestre de 350 m² con piscina, jardín diseñado y sistemas ecológicos. Máxima privacidad y confort en contacto con la naturaleza.",
         priceFrom: "$400.000.000",
         priceTo: "$600.000.000",
@@ -152,7 +169,7 @@ const projectsData = {
     6: {
         name: "Centro Comercial Integral",
         category: "Comercial",
-        location: "Ubicación Premium Centro",
+        location: "Espinal - Tolima, Colombia",
         description: "Centro comercial de 1200 m² con múltiples locales, área común y servicios complementarios. Oportunidad de inversión de alto rendimiento.",
         priceFrom: "$800.000.000",
         priceTo: "$1.200.000.000",
@@ -196,8 +213,8 @@ function loadProjectData(projectId) {
         document.getElementById('projectLocation').textContent = project.location;
 
         // Actualizar precios
-        document.getElementById('priceFrom').textContent = project.priceFrom;
-        document.getElementById('priceTo').textContent = project.priceTo;
+        document.getElementById('priceFrom').textContent = project.priceFrom || '';
+        document.getElementById('priceTo').textContent = project.priceTo || '';
 
         // Actualizar ubicación principal y detalle
         document.getElementById('projectLocation').textContent = project.location;
@@ -207,23 +224,58 @@ function loadProjectData(projectId) {
         }
 
         // Actualizar oferta
-        document.getElementById('projectOffer').textContent = project.offer;
+        const offerElement = document.getElementById('projectOffer');
+        if (offerElement) offerElement.textContent = project.offer || '';
+
+        const simpleDetail = Boolean(project.simpleDetail);
+        const detailLayout = document.querySelector('.project-detail-new');
+        if (detailLayout) detailLayout.classList.toggle('sales-detail', simpleDetail);
+        const detailTitle = document.getElementById('projectDescriptionTitle');
+        if (detailTitle) {
+            detailTitle.textContent = simpleDetail
+                ? (project.detailTitle || 'Sala de Ventas')
+                : 'Descripción del Proyecto';
+        }
 
         // Actualizar descripción
         document.getElementById('projectFullDescription').textContent = project.description;
 
-        // Actualizar características
+        document.getElementById('projectOfferBox').style.display = simpleDetail ? 'none' : '';
+        document.getElementById('projectFeaturesHeading').style.display = simpleDetail ? 'none' : '';
+        document.getElementById('projectFeatures').style.display = simpleDetail ? 'none' : '';
+
+        const hoursList = document.getElementById('projectHours');
+        if (hoursList) {
+            hoursList.innerHTML = (project.hours || []).map(hour => `
+                <div class="amenity-card hours-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>${hour.name}</h4>
+                    <p>${hour.desc}</p>
+                </div>
+            `).join('');
+            const hoursSection = hoursList.closest('.project-hours');
+            if (hoursSection) hoursSection.style.display = project.hours ? 'block' : 'none';
+        }
+
         const featuresList = document.getElementById('projectFeatures');
-        featuresList.innerHTML = project.features.map(feature =>
-            `<li><i class="fas fa-check"></i> ${feature}</li>`
-        ).join('');
+        if (featuresList) {
+            featuresList.innerHTML = (project.features || []).map(feature =>
+                `<li><i class="fas fa-check"></i> ${feature}</li>`
+            ).join('');
+        }
 
         // Actualizar especificaciones técnicas
-        document.getElementById('specArea').textContent = project.area;
-        document.getElementById('specYear').textContent = project.year;
-        document.getElementById('specFloors').textContent = project.floors;
-        document.getElementById('specBedrooms').textContent = project.bedrooms;
-        document.getElementById('specBathrooms').textContent = project.bathrooms;
+        const specs = {
+            specArea: project.area,
+            specYear: project.year,
+            specFloors: project.floors,
+            specBedrooms: project.bedrooms,
+            specBathrooms: project.bathrooms
+        };
+        Object.entries(specs).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) element.textContent = value || '';
+        });
 
         // Labels y íonos personalizados de specs
         if (project.floorLabel) {
@@ -240,6 +292,15 @@ function loadProjectData(projectId) {
         if (project.labelFrom) document.getElementById('labelPriceFrom').textContent = project.labelFrom;
         if (project.labelTo) document.getElementById('labelPriceTo').textContent = project.labelTo;
         const priceSection = document.getElementById('priceSectionInline');
+        const priceToItem = document.getElementById('priceToItem');
+        const priceRangeDivider = document.getElementById('priceRangeDivider');
+        const hasPriceRange = Boolean(project.priceTo);
+        if (priceSection) priceSection.style.display = simpleDetail ? 'none' : '';
+        if (priceToItem && priceRangeDivider && priceSection) {
+            priceToItem.style.display = hasPriceRange ? 'flex' : 'none';
+            priceRangeDivider.style.display = hasPriceRange ? 'block' : 'none';
+            priceSection.style.gridTemplateColumns = hasPriceRange ? '1fr 50px 1fr' : '1fr';
+        }
         const existingLote = document.getElementById('priceLoteItem');
         if (existingLote) existingLote.remove();
         if (project.priceLote && priceSection) {
@@ -281,6 +342,31 @@ function loadProjectData(projectId) {
                 }
             });
         }
+
+        const mapFrame = document.getElementById('projectMap');
+        const mapSection = document.getElementById('ubicacion-section');
+        const mapTab = document.querySelector('.tab-anchor-link[href="#ubicacion-section"]');
+        if (mapFrame) {
+            mapFrame.src = project.mapEmbed || '';
+        }
+        if (mapSection) {
+            mapSection.style.display = project.mapEmbed ? '' : 'none';
+        }
+        if (mapTab) {
+            mapTab.style.display = project.mapEmbed ? '' : 'none';
+        }
+
+        const gallerySidebar = document.getElementById('gallerySidebar');
+        if (gallerySidebar) gallerySidebar.style.display = simpleDetail ? 'none' : '';
+        const tourButton = document.getElementById('tourBtn');
+        if (tourButton) tourButton.style.display = simpleDetail ? 'none' : '';
+
+        ['planos-section', 'amenidades-section', 'especificaciones-section'].forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            const tab = document.querySelector(`.tab-anchor-link[href="#${sectionId}"]`);
+            if (section) section.style.display = simpleDetail ? 'none' : '';
+            if (tab) tab.style.display = simpleDetail ? 'none' : '';
+        });
 
         // Actualizar planos arquitectónicos
         if (project.planos) {
