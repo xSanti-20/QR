@@ -56,29 +56,47 @@ const projectsData = {
         description: "Proyecto de casas de lujo en Espinal con diseño arquitectónico moderno y contemporáneo. Cada casa cuenta con características exclusivas, amplios espacios, sistemas inteligentes y ubicación privilegiada en una zona residencial de alto nivel.",
         priceFrom: "$83.500.000",
         labelFrom: "Valor del conjunto",
-        image: "https://via.placeholder.com/700x500/e91e63/ffffff?text=Luxury+Malibu",
+        image: "../static/images/IMGLUXURY.PNG",
+        gallery: [
+            "../static/images/IMGLUXURY.PNG",
+            "../static/images/FACHADALUXURY.PNG",
+            "../static/images/LUXURYM.jpg"
+        ],
+        video: "../static/images/VIDEOLUXURY.mp4",
+        videoTitle: "Conoce el Proyecto Luxury Malibu",
         planos: [
             { src: "../static/images/PLANOLUXURY.jpg", label: "Plano Luxury Malibu" },
-            { src: "../static/images/detalles/vistareareservas.jpeg", label: "Vista Aérea" },
-            { src: "../static/images/detalles/detallesreservas.png", label: "Vista General" }
+            { src: "../static/images/LUXURYAEREA.PNG", label: "Vista Aérea" },
+            { src: "../static/images/LUXURYGENERAL.jpg", label: "Vista General" }
         ],
-        area: "250 a 500 m²",
-        year: "2026",
-        floors: "2 a 3",
-        bedrooms: "3 a 5",
-        bathrooms: "3 a 4",
-        offer: "Acceso exclusivo a clubhouse de lujo con piscina olímpica",
+        area: "128 m²",
+        year: "2027",
+        floors: "Libre construcción",
+        bedrooms: "3",
+        bathrooms: "2",
+        offer: "Separa el tuyo por $1.000.000 de pesos",
         features: [
-            "Casas de lujo con diseño contemporáneo",
-            "Amplios espacios y áreas verdes",
-            "Sistemas de domótica integrados",
-            "Piscina privada en cada casa",
-            "Garaje para 2 a 3 vehículos",
-            "Cocina integral de lujo",
-            "Zonas de ocio familiar",
-            "Acceso a clubhouse comunitario",
-            "Seguridad perimetral 24/7",
-            "Vecindario selectivo y exclusivo"
+            "Financiamiento del 30% directamente con la constructora",
+            "Planes de pago entre 1 y 2 años",
+            "Portería y vigilancia 24/7",
+            "Piscina para niños y adultos",
+            "Gimnasio",
+            "Oratorio",
+            "Coworking",
+            "Cancha de tenis"
+        ],
+        floorLabel: "Libre construcción",
+        floorIcon: "fas fa-hammer",
+        parkingLabel: "Parqueadero",
+        parkingIcon: "fas fa-car",
+        parking: "Incluido",
+        amenidades: [
+            { icon: "fas fa-swimming-pool", name: "Piscina", desc: "Piscina para niños y adultos." },
+            { icon: "fas fa-dumbbell", name: "Gimnasio", desc: "Equipamiento completo y moderno." },
+            { icon: "fas fa-couch", name: "Salón Social", desc: "Espacio para reuniones y eventos." },
+            { icon: "fas fa-leaf", name: "Eco Ruta Perimetral", desc: "Sendero ecológico alrededor del conjunto." },
+            { icon: "fas fa-child", name: "Parques Infantiles", desc: "Zona segura para el juego de los niños." },
+            { icon: "fas fa-car", name: "Garaje", desc: "Garaje incluido." }
         ]
     },
     3: {
@@ -91,13 +109,19 @@ const projectsData = {
         priceTo: "$250M COP",
         priceLote: "$59.500.000",
         labelLote: "Lote",
-        image: "https://via.placeholder.com/700x500/e91e63/ffffff?text=Malibu",
+        image: "../static/images/INDEX.jpeg",
+        gallery: [
+            "../static/images/GALERIAMALIB.jpeg",
+            "../static/images/GALERIAMALIB2.jpeg",
+            "../static/images/GALERIAMALIB3.jpeg",
+            "../static/images/GALERIAMALIB4.jpeg"
+        ],
         video: "../static/videos/videomalibu.mp4",
         videoTitle: "Conoce el Proyecto Malibu",
         planos: [
             { src: "../static/images/PLANOMALIBU.jpg", label: "Plano Arquitectonico" },
-            { src: "../static/images/detalles/vistareareservas.jpeg", label: "Vista Aérea" },
-            { src: "../static/images/detalles/detallesreservas.png", label: "Vista General" }
+            { src: "../static/images/MALIBUAEREA.jpeg", label: "Vista Aérea" },
+            { src: "../static/images/MALIBUGENERAL.png", label: "Vista General" }
         ],
         area: "105 m²",
         year: "2027",
@@ -358,8 +382,6 @@ function loadProjectData(projectId) {
 
         const gallerySidebar = document.getElementById('gallerySidebar');
         if (gallerySidebar) gallerySidebar.style.display = simpleDetail ? 'none' : '';
-        const tourButton = document.getElementById('tourBtn');
-        if (tourButton) tourButton.style.display = simpleDetail ? 'none' : '';
 
         ['planos-section', 'amenidades-section', 'especificaciones-section'].forEach(sectionId => {
             const section = document.getElementById(sectionId);
@@ -449,17 +471,12 @@ function filterRelatedProjects(currentProjectId) {
     });
 }
 
-// Botones de Video y Tour Virtual
+// Botón de Video
 document.getElementById('videoBtn')?.addEventListener('click', function () {
     const videoSection = document.getElementById('video-section');
     if (videoSection) {
         videoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-});
-
-document.getElementById('tourBtn')?.addEventListener('click', function () {
-    alert('Tour virtual interactivo cargará aquí');
-    // Implementar tour virtual
 });
 
 // Botón de comparar
